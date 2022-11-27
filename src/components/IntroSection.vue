@@ -16,9 +16,9 @@ defineProps({
         problems through creative means.
       </h2>
       <h2>
-        Computer science student at the
+        I'm currently a computer science student at the
         <a href="https://umich.edu/" target="_blank">University of Michigan</a>
-        and incoming software engineer at
+        and an incoming software engineer at
         <a href="https://stripe.com/" target="_blank">Stripe</a>.
       </h2>
     </div>

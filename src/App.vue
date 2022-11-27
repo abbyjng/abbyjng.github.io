@@ -43,7 +43,7 @@ onUnmounted(() => {
 
 <template>
   <header>
-    <TheNavbar current="about" />
+    <TheNavbar current="" />
   </header>
 
   <main>

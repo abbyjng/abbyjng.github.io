@@ -10,7 +10,7 @@ defineProps({
     <div :class="isInView ? 'in-view section-body' : 'section-body'">
       <h1>About Me</h1>
       <h2>
-        Hey there! My name is Abigail and my passion lies in the intersection
+        Hey there! My name is Abigail, and my passion lies in the intersection
         between solving puzzles and creating things. I've always found joy in
         coming up with my own solutions which don't compromise my designs when
         crocheting plushies, building mechanical keyboards, and writing my own
@@ -20,7 +20,7 @@ defineProps({
         Now, I use my creative problem solving to guide my designs in full stack
         development and push my learning as I become familiar with new
         frameworks. Check out some of my <a href="#projects">projects</a> to get
-        a taste of what I do!
+        a taste of what I love to do!
       </h2>
     </div>
   </div>
