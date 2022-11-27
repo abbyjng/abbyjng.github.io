@@ -39,6 +39,11 @@ h2 {
   line-height: 1.5rem;
 }
 
+svg {
+  width: 24px;
+  height: 24px;
+}
+
 a {
   color: #927aff;
   text-decoration: none;

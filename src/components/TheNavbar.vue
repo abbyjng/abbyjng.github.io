@@ -73,6 +73,7 @@ function clickNavitem() {
   bottom: 0;
   right: 0;
   left: 0;
+  height: 100vh;
   align-items: center;
   justify-content: center;
   position: fixed;
@@ -138,6 +139,8 @@ function clickNavitem() {
     display: none;
   }
   #navbar-links {
+    height: auto;
+    position: relative;
     display: flex;
     flex-direction: row;
     gap: 20px;

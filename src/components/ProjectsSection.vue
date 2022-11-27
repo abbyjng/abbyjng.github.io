@@ -9,6 +9,7 @@ defineProps({
     <p class="section-header">myWork();</p>
     <div :class="isInView ? 'in-view section-body' : 'section-body'">
       <h1>What I've made</h1>
+      <h2>project here</h2>
     </div>
   </div>
 </template>
