@@ -30,11 +30,12 @@ onMounted(() => {
   background-color: rgba(43, 41, 57, 0.9);
   backdrop-filter: blur(5px);
   z-index: 10000;
-  transition: all 0.5s 4s;
+  transition: opacity 0.5s 3.5s, z-index 0s 4s;
 }
 
 .transform.logo-screen {
   opacity: 0;
+  z-index: -1;
 }
 
 #arrow {
