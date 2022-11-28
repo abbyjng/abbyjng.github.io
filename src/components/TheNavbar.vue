@@ -78,7 +78,6 @@ function clickNavitem() {
   justify-content: center;
   position: fixed;
   background-color: rgba(31, 30, 37, 0.9);
-  backdrop-filter: blur(3px);
   opacity: 1;
 }
 

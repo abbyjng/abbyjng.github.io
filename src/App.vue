@@ -6,6 +6,7 @@ import AboutSection from "./components/AboutSection.vue";
 import ProjectsSection from "./components/ProjectsSection.vue";
 import ContactSection from "./components/ContactSection.vue";
 import TheFooter from "./components/TheFooter.vue";
+import TheLogo from "./components/TheLogo.vue";
 
 const introInView = ref(false);
 const aboutInView = ref(false);
@@ -61,6 +62,7 @@ onUnmounted(() => {
       <ContactSection :isInView="contactInView" />
     </div>
     <TheFooter />
+    <TheLogo />
   </main>
 </template>
 
