@@ -8,8 +8,6 @@ defineProps({
 });
 
 const data = ref(json);
-
-console.log(data);
 </script>
 
 <template>

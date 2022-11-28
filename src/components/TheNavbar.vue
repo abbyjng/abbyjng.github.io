@@ -83,7 +83,7 @@ function clickNavitem() {
 }
 
 #name {
-  color: white;
+  color: #f5f1ff;
   font-weight: 500;
   font-size: 1.8rem;
   line-height: 2.1rem;
@@ -102,7 +102,7 @@ function clickNavitem() {
   position: absolute;
   width: 30px;
   height: 2px;
-  background: white;
+  background: #f5f1ff;
 }
 
 #menu-button #top {

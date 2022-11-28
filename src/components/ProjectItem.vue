@@ -6,7 +6,9 @@ const props = defineProps({
   index: Number,
 });
 
+const opened = ref(false);
 const computedPadding = ref({});
+const hovered = ref(false);
 
 function computePadding() {
   const backWindow =
@@ -16,53 +18,53 @@ function computePadding() {
 
   backWindow.style.position = "relative";
 
-  const backWindowHeightStr = window.getComputedStyle(backWindow, null).height;
-  const frontWindowHeightStr = window.getComputedStyle(
+  const frontWindowPaddingStr = window.getComputedStyle(
     frontWindow,
     null
-  ).height;
+  ).paddingBottom;
 
-  const backWindowHeight = backWindowHeightStr.substring(
-    0,
-    backWindowHeightStr.length - 2
+  const frontWindowPadding = parseInt(
+    frontWindowPaddingStr.substring(0, frontWindowPaddingStr.length - 2)
   );
-  const frontWindowHeight = frontWindowHeightStr.substring(
-    0,
-    frontWindowHeightStr.length - 2
-  );
+
+  const backWindowHeight = backWindow.offsetHeight;
+  const frontWindowHeight = frontWindow.offsetHeight;
 
   computedPadding.value = {
-    "--padding": backWindowHeight - frontWindowHeight + 10 + "px",
+    "--padding":
+      backWindowHeight - (frontWindowHeight - frontWindowPadding) + "px",
   };
+
   backWindow.style.position = "absolute";
 }
-
-const opened = ref(false);
 
 function toggleClick() {
   if (opened.value) {
     opened.value = false;
-    console.log("toggled off");
   } else {
     opened.value = true;
-    console.log("toggled on");
   }
 }
 
 function close() {
   if (opened.value) {
     opened.value = false;
-    console.log("toggled off");
   }
 }
 
+var resizeTimer;
+function delayResizeUpdate() {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(computePadding, 100);
+}
+
 onMounted(() => {
-  window.addEventListener("resize", computePadding);
+  window.addEventListener("resize", delayResizeUpdate);
   computePadding();
 });
 
 onUnmounted(() => {
-  window.removeEventListener("resize", computePadding);
+  window.removeEventListener("resize", delayResizeUpdate);
 });
 </script>
 
@@ -70,6 +72,8 @@ onUnmounted(() => {
   <div
     v-click-away="close"
     @click="toggleClick"
+    @mouseover="hovered = true"
+    @mouseleave="hovered = false"
     :class="opened ? 'project-item open' : 'project-item closed'"
   >
     <div class="project-back">
@@ -79,31 +83,37 @@ onUnmounted(() => {
     </div>
     <div class="project-front" :style="computedPadding">
       <div class="project-header">
-        <p class="project-name">
-          {{ details.name }}
-        </p>
-        <p class="project-category">//{{ details.category }}</p>
+        <div class="project-title">
+          <p class="project-name">
+            {{ details.name }}
+          </p>
+          <p class="project-category">//{{ details.category }}</p>
+        </div>
+        <div :class="hovered ? 'hovered project-expand' : 'project-expand'">
+          Read more
+        </div>
       </div>
 
       <p class="project-timeframe">
         {{ details.timeframe }}
       </p>
-      <div class="project-frameworks">
-        <div
-          class="project-framework"
-          v-for="framework in details.frameworks"
-          :key="framework"
-        >
-          {{ framework }}
+      <div class="project-bottom-bar">
+        <div class="project-links">
+          <div class="project-link" v-for="link in details.links" :key="link">
+            <a :href="link.link">
+              <component v-bind:is="link.icon"></component>
+            </a>
+          </div>
         </div>
-      </div>
-      <div class="project-links">
-        <div
-          class="project-link"
-          v-for="link in details.links"
-          :key="link"
-        ></div>
-        {{ link }}
+        <div class="project-frameworks">
+          <div
+            class="project-framework"
+            v-for="framework in details.frameworks"
+            :key="framework"
+          >
+            {{ framework }};
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -114,6 +124,7 @@ onUnmounted(() => {
   position: relative;
   width: 80vw;
   margin-top: 20px;
+  cursor: pointer;
 }
 
 .project-front,
@@ -122,6 +133,11 @@ onUnmounted(() => {
   background-color: rgba(43, 41, 57, 0.5);
   backdrop-filter: blur(3px);
   padding: 10px;
+}
+
+.project-front:hover {
+  background-color: rgba(54, 51, 74, 0.8);
+  transition: background-color 0.3s;
 }
 
 .project-back {
@@ -164,12 +180,13 @@ onUnmounted(() => {
   font-size: 1.2rem;
   line-height: 1.5rem;
   font-weight: 700;
-  color: white;
+  color: #f5f1ff;
 }
 
 .project-category {
   text-transform: uppercase;
   line-height: 1.3rem;
+  font-family: monospace;
 }
 
 .open .project-front *,
@@ -184,6 +201,13 @@ onUnmounted(() => {
   transition: opacity 0.3s ease-in-out;
 }
 
+.project-bottom-bar {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
 .project-frameworks {
   display: flex;
   column-gap: 10px;
@@ -193,18 +217,58 @@ onUnmounted(() => {
 }
 
 .project-description {
-  color: white;
+  color: #f5f1ff;
   font-size: 1rem;
   line-height: 1.3rem;
+}
+
+.project-links {
+  display: flex;
+  column-gap: 10px;
+}
+
+a {
+  fill: #f5f1ff;
+  transition: fill 0.3s;
+}
+
+a:hover {
+  fill: #927aff;
+  transition: fill 0.3s;
+}
+
+a::before {
+  background-color: transparent;
+}
+
+a:hover::before {
+  background-color: transparent;
+}
+
+.project-header {
+  display: flex;
+  gap: 10px;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.project-expand {
+  align-self: flex-start;
+  white-space: nowrap;
+  margin-right: 10px;
+}
+
+.project-expand.hovered {
+  color: #927aff;
 }
 
 @media (min-width: 480px) {
 }
 
 @media (min-width: 768px) {
-  .project-header {
+  .project-title {
     display: flex;
-    gap: 10px;
+    column-gap: 10px;
     align-items: flex-end;
     flex-wrap: wrap;
   }
