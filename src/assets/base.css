@@ -42,8 +42,9 @@ body {
   color: var(--color-text);
   background: var(--color-background);
   line-height: 1.6;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: "Lato", "Monteserrat", Verdana, Geneva, Tahoma, sans-serif;
   font-size: 15px;
+  letter-spacing: 0.02em;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

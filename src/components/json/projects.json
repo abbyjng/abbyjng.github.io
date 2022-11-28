@@ -1,0 +1,40 @@
+[
+  {
+    "name": "Stripe - Case Studio Events",
+    "category": "Summer internship project",
+    "timeframe": "May 2022 - July 2022",
+    "description": "Case Studio is what Stripe calls the agent-facing side of the helpdesk platform, which allows agents to interact with customers and resolve tickets swiftly and easily. I added a data collection and display point into this interface which allows agents to see a log of what changes have been made to the case by themselves or by other agents. This data is collected upon submission of a case change, stored in MongoDB using models, and displayed inline with case messages to indicate the timeline of the case.",
+    "frameworks": ["Ruby", "JavaScript", "HTML", "Full-stack", "MongoDB"],
+    "links": []
+  },
+  {
+    "name": "Stripe - Agent Satisfaction",
+    "category": "Summer internship project",
+    "timeframe": "July 2022 - August 2022",
+    "description": "As developers of Case Studio, my team had no concrete and regular way to receive unbiased feedback from agents about how well Case Studio is working for them. To combat this gap in feedback, I scoped out this project and worked with a designer and the Ops team to determine the best questions to ask agents and how those should be displayed to them. The result was a survey displayed at random intervals, once every calendar month, with five questions rated from 1-5 and optional textfields when a low score is picked.",
+    "frameworks": ["Ruby", "JavaScript", "HTML", "Full-stack", "MongoDB"],
+    "links": []
+  },
+  {
+    "name": "Moolah",
+    "category": "Personal project",
+    "timeframe": "May 2020 - current",
+    "description": "Designed originally to fill a personal problem space, Moolah was originally designed as \"RoomieBot\", a Discord bot made specifically for me and my roommates. It slowly developed into a money-splitting bot, working similarly to the Splitwise app. Moolah allows any group of people in a shared Discord server to share expenses, reducing daily money transfer down to a few transactions every couple of months. In a near release, it will also have functionality to store personal expenses, utilizing Discord's direct messaging, and allowing users to budget their money without downloading a new app or signing up for a new website.",
+    "frameworks": ["JavaScript", "Node", "SQLite", "Discord.js"],
+    "links": [
+      { "link": "https://github.com/abbyjng/Moolah", "icon": "" },
+      {
+        "link": "https://discord.com/oauth2/authorize?client_id=839639502767259669&permissions=11328&scope=bot%20applications.commands",
+        "icon": ""
+      }
+    ]
+  },
+  {
+    "name": "Meta - Community Messaging Audio Rooms",
+    "category": "Summer internship project",
+    "timeframe": "May 2021 - August 2021",
+    "description": "Worked with the iOS Messenger app to create the UI and backend of a new feature. Details of this project are under NDA, as the encompassing feature has not yet been released. Please reach out to me if you would like to learn more!",
+    "frameworks": ["Objective-C", "C", "Mobile app", "iOS"],
+    "links": []
+  }
+]

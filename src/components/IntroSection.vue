@@ -31,6 +31,7 @@ h1 {
   font-size: 2.3rem;
   font-weight: 500;
   line-height: 2.6rem;
+  text-transform: none;
 }
 
 #name {

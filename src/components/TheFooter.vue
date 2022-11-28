@@ -70,6 +70,7 @@ const linkedinHover = ref(false);
   padding-top: 30px;
   background-color: rgba(43, 41, 57, 0.5);
   backdrop-filter: blur(5px);
+  z-index: 1000;
 }
 
 .footer #shape {

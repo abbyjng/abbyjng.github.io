@@ -10,7 +10,8 @@
     "deploy": "sh deploy.sh"
   },
   "dependencies": {
-    "vue": "^3.2.45"
+    "vue": "^3.2.45",
+    "vue3-click-away": "^1.2.4"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.1.4",
@@ -18,8 +19,8 @@
     "@vue/eslint-config-prettier": "^7.0.0",
     "eslint": "^8.22.0",
     "eslint-plugin-vue": "^9.3.0",
+    "execa": "latest",
     "prettier": "^2.7.1",
-    "vite": "^3.2.4",
-    "execa": "latest"
+    "vite": "^3.2.4"
   }
 }
