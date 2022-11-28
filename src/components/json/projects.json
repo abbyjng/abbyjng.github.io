@@ -11,7 +11,7 @@
     "name": "Stripe - Agent Satisfaction",
     "category": "Summer internship project",
     "timeframe": "July 2022 - August 2022",
-    "description": "As developers of Case Studio, my team had no concrete and regular way to receive unbiased feedback from agents about how well Case Studio is working for them. To combat this gap in feedback, I scoped out this project and worked with a designer and the Ops team to determine the best questions to ask agents and how those should be displayed to them. The result was a survey displayed at random intervals, once every calendar month, with five questions rated from 1-5 and optional textfields when a low score is picked.",
+    "description": "As developers of Case Studio, my team had no concrete and regular way to receive unbiased feedback from agents about how well Case Studio is working for them. To combat this gap in feedback, I scoped out this project from scratch and worked with a UI designer and the Ops team to determine the best questions to ask agents and how they should be displayed to them. The result was a 5-question survey displayed at random intervals, once every calendar month.",
     "frameworks": ["Ruby", "JavaScript", "HTML", "Full-stack", "MongoDB"],
     "links": []
   },
