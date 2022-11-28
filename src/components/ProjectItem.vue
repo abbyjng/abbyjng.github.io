@@ -122,7 +122,7 @@ onUnmounted(() => {
 <style scoped>
 .project-item {
   position: relative;
-  width: 80vw;
+  width: 100%;
   margin-top: 20px;
   cursor: pointer;
 }

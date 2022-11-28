@@ -19,7 +19,7 @@
     "name": "Moolah - Discord bot",
     "category": "Personal project",
     "timeframe": "May 2020 - current",
-    "description": "Designed originally to fill a personal problem space, Moolah was originally designed as \"RoomieBot\", a Discord bot made specifically for me and my roommates. It slowly developed into a money-splitting bot, working similarly to the Splitwise app. Moolah allows any group of people in a shared Discord server to share expenses, reducing daily money transfer down to a few transactions every couple of months. In a near release, it will also have functionality to store personal expenses, utilizing Discord's direct messaging, and allowing users to budget their money without downloading a new app or signing up for a new website.",
+    "description": "Designed originally to fill a personal problem space, Moolah began as \"RoomieBot\", a Discord bot made specifically for me and my roommates. It slowly developed into a money-splitting bot, working similarly to the Splitwise app. Moolah allows any group of people in a shared Discord server to share expenses, reducing daily money transfer down to a few transactions every couple of months. In a near release, it will also have functionality to store personal expenses, utilizing Discord's direct messaging, and allowing users to budget their money without downloading a new app or signing up for a new website.",
     "frameworks": ["JavaScript", "Node", "SQLite", "Discord.js"],
     "links": [
       { "link": "https://github.com/abbyjng/Moolah", "icon": "CodeIcon" },
