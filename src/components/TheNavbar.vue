@@ -27,7 +27,10 @@ function clickNavitem() {
 
 <template>
   <div class="navbar">
-    <h1 id="name">Abigail Ng</h1>
+    <div id="logo">
+      <img src="./images/logo.png" />
+      <h1 id="name">Abigail Ng</h1>
+    </div>
     <div id="menu-button" :class="menuOpen ? 'clicked' : ''" @click="clickMenu">
       <div id="top"></div>
       <div id="bottom"></div>
@@ -81,12 +84,19 @@ function clickNavitem() {
   opacity: 1;
 }
 
+#logo {
+  display: flex;
+  align-items: flex-end;
+  column-gap: 10px;
+}
+
+img {
+  height: 25px;
+  margin-bottom: 5px;
+}
+
 #name {
-  color: #f5f1ff;
-  font-weight: 500;
-  font-size: 1.8rem;
-  line-height: 2.1rem;
-  align-self: flex-end;
+  display: none;
 }
 
 #menu-button {
@@ -131,12 +141,21 @@ function clickNavitem() {
 }
 
 @media (min-width: 480px) {
+  #name {
+    display: block;
+    color: #f5f1ff;
+    font-weight: 500;
+    font-size: 1.8rem;
+    line-height: 2.1rem;
+    align-self: flex-end;
+  }
 }
 
 @media (min-width: 768px) {
   #menu-button {
     display: none;
   }
+
   #navbar-links {
     height: auto;
     position: relative;

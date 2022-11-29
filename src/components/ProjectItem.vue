@@ -130,22 +130,24 @@ onUnmounted(() => {
 .project-front,
 .project-back {
   border-radius: 10px;
-  background-color: rgba(43, 41, 57, 0.5);
-  backdrop-filter: blur(3px);
+  background-color: rgba(43, 41, 57, 0.7);
+  backdrop-filter: blur(5px);
   padding: 10px;
 }
 
 .project-front:hover {
-  background-color: rgba(54, 51, 74, 0.8);
+  background-color: rgba(54, 51, 74, 0.9);
   transition: background-color 0.3s;
 }
 
 .project-back {
   position: absolute;
+  border: 2px solid #f5f1ff;
 }
 
 .project-front {
   position: relative;
+  border: 2px solid #927aff;
 }
 
 .open .project-front {
@@ -154,7 +156,6 @@ onUnmounted(() => {
 
 .closed .project-front,
 .open .project-back {
-  border: 2px solid #927aff;
   top: 0px;
   bottom: 0px;
   left: 0px;
@@ -166,7 +167,6 @@ onUnmounted(() => {
 
 .open .project-front,
 .closed .project-back {
-  border: 2px solid #765fdc;
   top: 8px;
   bottom: -8px;
   left: 8px;
