@@ -29,7 +29,7 @@ function clickNavitem() {
   <div class="navbar">
     <div id="logo">
       <img src="./images/logo.png" />
-      <h1 id="name">Abigail Ng</h1>
+      <!-- <h1 id="name">Abigail Ng</h1> -->
     </div>
     <div id="menu-button" :class="menuOpen ? 'clicked' : ''" @click="clickMenu">
       <div id="top"></div>
@@ -91,7 +91,7 @@ function clickNavitem() {
 }
 
 img {
-  height: 25px;
+  height: 30px;
   margin-bottom: 5px;
 }
 
