@@ -19,16 +19,14 @@ function clickMenu() {
     menuOpen.value = false;
   }
 }
-
-function clickNavitem() {
-  menuOpen.value = false;
-}
 </script>
 
 <template>
   <div class="navbar">
     <div id="logo">
-      <img src="./images/logo.png" />
+      <a id="logo-link" href="#intro">
+        <img src="./images/logo.png" />
+      </a>
       <!-- <h1 id="name">Abigail Ng</h1> -->
     </div>
     <div id="menu-button" :class="menuOpen ? 'clicked' : ''" @click="clickMenu">
@@ -38,7 +36,7 @@ function clickNavitem() {
     <div
       id="navbar-links"
       :class="menuOpen ? 'open' : ''"
-      @click="clickNavitem"
+      @click="menuOpen = false"
     >
       <NavbarItem name="about" :isCurrent="current == 'about'"></NavbarItem>
       <NavbarItem
@@ -93,6 +91,14 @@ function clickNavitem() {
 img {
   height: 30px;
   margin-bottom: 5px;
+}
+
+#logo-link::before {
+  background-color: transparent;
+}
+
+#logo-link:hover::before {
+  background-color: transparent;
 }
 
 #name {

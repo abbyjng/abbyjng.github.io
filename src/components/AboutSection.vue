@@ -25,7 +25,7 @@ defineProps({
             get a taste of what I love to do!
           </h2>
         </div>
-        <img src="./images/portrait.jpg" />
+        <img src="./images/portrait.png" />
       </div>
     </div>
   </div>
@@ -34,15 +34,18 @@ defineProps({
 <style scoped>
 img {
   width: 80vw;
+  border-radius: 50%;
+  max-width: 200px;
+  box-shadow: 15px 0 #483a8a, -15px 0 #b5aed5;
 }
+
 @media (min-width: 480px) {
+  img {
+    width: auto;
+  }
 }
 
 @media (min-width: 768px) {
-  img {
-    width: auto;
-    height: 40vh;
-  }
 }
 
 @media (min-width: 1024px) {
