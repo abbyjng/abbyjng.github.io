@@ -72,6 +72,11 @@ a:hover::before {
   transform: scaleX(1);
 }
 
+b {
+  font-weight: 700;
+  color: #af9eff;
+}
+
 .section {
   display: flex;
   align-items: center;

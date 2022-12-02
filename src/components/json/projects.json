@@ -3,7 +3,7 @@
     "name": "Stripe - Case Studio Events",
     "category": "Summer internship project",
     "timeframe": "May 2022 - July 2022",
-    "description": "Case Studio is what Stripe calls the agent-facing side of the helpdesk platform, which allows agents to interact with customers and resolve tickets swiftly and easily. I added a data collection and display point into this interface which allows agents to see a log of what changes have been made to the case by themselves or by other agents. This data is collected upon submission of a case change, stored in MongoDB using models, and displayed inline with case messages to indicate the timeline of the case.",
+    "description": "<div><b>Case Studio:</b> The agent-facing side of Stripe's helpdesk platform, where agents to interact with customers and resolve tickets swiftly and easily.</div><div><b>Problem space:</b> Agents often pass tickets off between each other, especially in ticket escalation. They should be able to easily see what decisions have been already made on the ticket.</div><div><b>Summary:</b><ul><li>Added a data collection and display point into Case Studio which allows agents to see a log of what changes have been made to the case by themselves or by other agents</li><li>Collected data on ~10k daily case changes and stored data in a MongoDB model</li><li>Integrated data with existing case messages to create a visual timeline of a case's history</li></ul></div>",
     "frameworks": ["Ruby", "JavaScript", "HTML", "Full-stack", "MongoDB"],
     "links": []
   },
@@ -11,7 +11,7 @@
     "name": "Stripe - Agent Satisfaction",
     "category": "Summer internship project",
     "timeframe": "July 2022 - August 2022",
-    "description": "As developers of Case Studio, my team had no concrete and regular way to receive unbiased feedback from agents about how well Case Studio is working for them. To combat this gap in feedback, I scoped out this project from scratch and worked with a UI designer and the Ops team to determine the best questions to ask agents and how they should be displayed to them. The result was a 5-question survey displayed at random intervals, once every calendar month.",
+    "description": "<div><b>Case Studio:</b> The agent-facing side of Stripe's helpdesk platform, where agents to interact with customers and resolve tickets swiftly and easily.</div><div><b>Problem space:</b> As developers of Case Studio, my team had no concrete and regular way to receive unbiased feedback from agents about how well Case Studio is working for them.</div><div><b>Summary:</b><ul><li>Scoped out new project including timeline and Jira tasks</li><li>Worked with adjacent teams and UI designer to determine the best questions to ask agents</li><li>Created a 5-question survey displayed at pseudo-random intervals, once every calendar month</li></ul></div>",
     "frameworks": ["Ruby", "JavaScript", "HTML", "Full-stack", "MongoDB"],
     "links": []
   },
@@ -19,7 +19,7 @@
     "name": "Moolah - Discord bot",
     "category": "Personal project",
     "timeframe": "May 2020 - current",
-    "description": "Designed originally to fill a personal problem space, Moolah began as \"RoomieBot\", a Discord bot made specifically for me and my roommates. It slowly developed into a money-splitting bot, working similarly to the Splitwise app. Moolah allows any group of people in a shared Discord server to share expenses, reducing daily money transfer down to a few transactions every couple of months. In a near release, it will also have functionality to store personal expenses, utilizing Discord's direct messaging, and allowing users to budget their money without downloading a new app or signing up for a new website.",
+    "description": "<div><b>Problem space:</b> My roommates and I share a lot of expenses, and passing the same money back and forth between us is inefficient.</div><div><b>What it does:</b> A money-splitting bot which works similarly to the <a href=\"https://www.splitwise.com/\">Splitwise app</a> by allowing any group of people in a shared Discord server to share expenses, reducing daily money transfer down to a few transactions however often you want. Moolah does not require any new sign-ups or app downloads, working locally in your Discord server.</div><div><b>Project path:</b><ol><li>Started off as \"RoomieBot\": a rudimentary Discord bot that worked only in our server with our initials. A wrong input would probably break the bot.</li><li>Discord slash commands were released, and I realized I could make something much better and more versatile.</li><li>Reworked the entire bot, but kept the base functionality of sharing transactions between a group of people.</li><li>FUTURE RELEASE: Utilize Discord's direct messaging to allow for personal transaction tracking and budgeting.</li></ol></div>",
     "frameworks": ["JavaScript", "Node", "SQLite", "Discord.js"],
     "links": [
       { "link": "https://github.com/abbyjng/Moolah", "icon": "CodeIcon" },
@@ -33,7 +33,7 @@
     "name": "Meta - Community Messaging Audio Rooms",
     "category": "Summer internship project",
     "timeframe": "May 2021 - August 2021",
-    "description": "Worked with the iOS Messenger app to create the UI and backend of a new feature. Details of this project are under NDA, as the encompassing feature has not yet been released. Please reach out to me if you would like to learn more!",
+    "description": "<div><b>Summary:</b> Worked with the iOS Messenger app to create the UI and backend of a new Audio Rooms feature.</div><div>Details of this project are under NDA, as the encompassing feature has not yet been released. Please <a href=\"mailto:ajng@umich.edu\">reach out</a> if you would like to learn more!</div>",
     "frameworks": ["Objective-C", "C", "Mobile app", "iOS"],
     "links": []
   }

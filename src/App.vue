@@ -7,6 +7,7 @@ import ProjectsSection from "./components/ProjectsSection.vue";
 import ContactSection from "./components/ContactSection.vue";
 import TheFooter from "./components/TheFooter.vue";
 import TheLogo from "./components/TheLogo.vue";
+import BackToTopArrow from "./components/BackToTopArrow.vue";
 
 const introInView = ref(false);
 const aboutInView = ref(false);
@@ -63,10 +64,8 @@ onUnmounted(() => {
     </div>
     <TheFooter />
     <TheLogo />
+    <BackToTopArrow />
   </main>
 </template>
 
-<style scoped>
-@media (min-width: 1024px) {
-}
-</style>
+<style scoped></style>

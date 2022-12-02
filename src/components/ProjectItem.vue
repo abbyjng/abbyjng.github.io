@@ -77,9 +77,7 @@ onUnmounted(() => {
     :class="opened ? 'project-item open' : 'project-item closed'"
   >
     <div class="project-back">
-      <p class="project-description">
-        {{ details.description }}
-      </p>
+      <div class="project-description" v-html="details.description"></div>
     </div>
     <div class="project-front" :style="computedPadding">
       <div class="project-header">
@@ -220,6 +218,10 @@ onUnmounted(() => {
   color: #f5f1ff;
   font-size: 1rem;
   line-height: 1.3rem;
+}
+
+.project-description:deep(div) {
+  padding-bottom: 10px;
 }
 
 .project-links {
