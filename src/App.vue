@@ -9,6 +9,8 @@ import TheFooter from "./components/TheFooter.vue";
 import TheLogo from "./components/TheLogo.vue";
 import BackToTopArrow from "./components/BackToTopArrow.vue";
 
+const scrollY = ref(0);
+
 const introInView = ref(false);
 const aboutInView = ref(false);
 const projectsInView = ref(false);
@@ -33,6 +35,8 @@ function handleScroll() {
   aboutInView.value = isInView("about");
   projectsInView.value = isInView("projects");
   contactInView.value = isInView("contact");
+
+  scrollY.value = window.scrollY;
 }
 
 onMounted(() => {
@@ -64,8 +68,17 @@ onUnmounted(() => {
     </div>
     <TheFooter />
     <TheLogo />
-    <BackToTopArrow />
+    <BackToTopArrow :class="scrollY >= 800 ? 'visible' : 'invisible'" />
   </main>
 </template>
 
-<style scoped></style>
+<style scoped>
+.invisible {
+  opacity: 0;
+  transition: all 0.3s;
+}
+
+.visible {
+  opacity: 1;
+}
+</style>

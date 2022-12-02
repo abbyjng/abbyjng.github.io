@@ -37,6 +37,7 @@ img {
   border-radius: 50%;
   max-width: 200px;
   box-shadow: 15px 0 #483a8a, -15px 0 #b5aed5;
+  margin: 0 auto;
 }
 
 @media (min-width: 480px) {
