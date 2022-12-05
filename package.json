@@ -11,7 +11,8 @@
   },
   "dependencies": {
     "vue": "^3.2.45",
-    "vue3-click-away": "^1.2.4"
+    "vue3-click-away": "^1.2.4",
+    "vue3-lottie": "^2.4.0"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.1.4",
