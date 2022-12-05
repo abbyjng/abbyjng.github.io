@@ -41,6 +41,7 @@ function handleScroll() {
 
 onMounted(() => {
   document.addEventListener("scroll", handleScroll);
+  handleScroll();
 });
 
 onUnmounted(() => {
