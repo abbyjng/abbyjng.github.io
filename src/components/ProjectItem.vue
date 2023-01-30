@@ -63,7 +63,9 @@ function delayResizeUpdate() {
 onMounted(() => {
   window.addEventListener("resize", delayResizeUpdate);
   axios
-    .get(`src/components/projects/${props.details.description}.html`)
+    .get(
+      `https://raw.githubusercontent.com/abbyjng/abbyjng.github.io/gh-pages/projects/${props.details.description}.html`
+    )
     .then((response) => {
       descriptionHTML.value = response.data;
       // compute padding only after the description has been loaded in
