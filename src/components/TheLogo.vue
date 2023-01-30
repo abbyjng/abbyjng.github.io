@@ -1,6 +1,6 @@
 <script setup>
 import { onMounted, ref } from "vue";
-import splashJson from "./json/splash.json";
+import splash from "./json/splash.json";
 
 const transform = ref(false);
 
@@ -12,7 +12,7 @@ onMounted(() => {
 <template>
   <div :class="transform ? 'transform logo-screen' : 'logo-screen'">
     <LottieAnimation
-      :animationData="splashJson"
+      :animationData="splash"
       background="transparent"
       :speed="1"
       width="auto"

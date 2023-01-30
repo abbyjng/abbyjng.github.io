@@ -1,0 +1,27 @@
+<div>
+  <b>Case Studio:</b> The agent-facing side of Stripe's helpdesk platform, where
+  agents to interact with customers and resolve tickets swiftly and easily.
+</div>
+<div>
+  <b>Problem space:</b> Agents often pass tickets off between each other,
+  especially in ticket escalation. They should be able to easily see what
+  decisions have been already made on the ticket.
+</div>
+<div>
+  <b>Summary:</b>
+  <ul>
+    <li>
+      Added a data collection and display point into Case Studio which allows
+      agents to see a log of what changes have been made to the case by
+      themselves or by other agents
+    </li>
+    <li>
+      Collected data on ~10k daily case changes and stored data in a MongoDB
+      model
+    </li>
+    <li>
+      Integrated data with existing case messages to create a visual timeline of
+      a case's history
+    </li>
+  </ul>
+</div>

@@ -1,5 +1,6 @@
 <script setup>
 import { onMounted, onUnmounted, ref } from "vue";
+import axios from "axios";
 
 const props = defineProps({
   details: JSON,
@@ -9,6 +10,7 @@ const props = defineProps({
 const opened = ref(false);
 const computedPadding = ref({});
 const hovered = ref(false);
+const descriptionHTML = ref("<div></div>");
 
 function computePadding() {
   const backWindow =
@@ -60,7 +62,13 @@ function delayResizeUpdate() {
 
 onMounted(() => {
   window.addEventListener("resize", delayResizeUpdate);
-  computePadding();
+  axios
+    .get(`src/components/projects/${props.details.description}.html`)
+    .then((response) => {
+      descriptionHTML.value = response.data;
+      // compute padding only after the description has been loaded in
+      setTimeout(computePadding, 100);
+    });
 });
 
 onUnmounted(() => {
@@ -77,7 +85,7 @@ onUnmounted(() => {
     :class="opened ? 'project-item open' : 'project-item closed'"
   >
     <div class="project-back">
-      <div class="project-description" v-html="details.description"></div>
+      <div class="project-description" v-html="descriptionHTML"></div>
     </div>
     <div class="project-front" :style="computedPadding">
       <div class="project-header">
