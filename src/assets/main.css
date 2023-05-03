@@ -20,11 +20,6 @@ header {
   z-index: 1000;
 }
 
-main {
-  margin-left: 5vw;
-  margin-right: 5vw;
-}
-
 h1 {
   color: #f5f1ff;
   font-size: 1.5rem;
@@ -80,7 +75,7 @@ b {
 .section {
   display: flex;
   align-items: center;
-  min-height: 100vh;
+  min-height: 60vh;
   scroll-snap-align: start;
   padding-top: 150px;
   padding-bottom: 150px;
@@ -137,11 +132,6 @@ b {
     font-size: 1.5rem;
   }
 
-  main {
-    margin-left: 10vw;
-    margin-right: 10vw;
-  }
-
   h1 {
     font-size: 1.5rem;
     line-height: 1.8rem;
@@ -155,12 +145,5 @@ b {
   .horizontal-flex {
     flex-direction: row;
     align-items: center;
-  }
-}
-
-@media (min-width: 1024px) {
-  main {
-    margin-left: 20%;
-    margin-right: 20%;
   }
 }

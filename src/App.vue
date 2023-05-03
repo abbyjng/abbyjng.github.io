@@ -54,7 +54,7 @@ onUnmounted(() => {
     <TheNavbar current="" />
   </header>
 
-  <main>
+  <main class="max-w-[1280px] mx-[10%]">
     <div id="intro" class="section">
       <IntroSection :isInView="introInView" />
     </div>
@@ -69,17 +69,10 @@ onUnmounted(() => {
     </div>
     <TheFooter />
     <TheLogo />
-    <BackToTopArrow :class="scrollY >= 800 ? 'visible' : 'invisible'" />
+    <BackToTopArrow
+      :class="
+        scrollY >= 800 ? 'opacity-0' : 'opacity-1' + ' transition duration-300'
+      "
+    />
   </main>
 </template>
-
-<style scoped>
-.invisible {
-  opacity: 0;
-  transition: all 0.3s;
-}
-
-.visible {
-  opacity: 1;
-}
-</style>

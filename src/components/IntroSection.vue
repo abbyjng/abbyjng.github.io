@@ -5,53 +5,35 @@ defineProps({
 </script>
 
 <template>
-  <div>
+  <div class="md:mt-[10vh]">
     <p class="section-header">helloWorld();</p>
-    <div :class="isInView ? 'in-view section-body' : 'section-body'">
-      <h1 id="name">I'm Abigail Ng,</h1>
-      <h1>web developer.</h1>
-      <h2>
-        I'm a software engineer who specializes in full stack development. I
-        find joy in frontend design and discovering solutions to puzzling
-        problems through creative means.
-      </h2>
-      <h2>
-        I'm currently a computer science student at the
-        <a href="https://umich.edu/" target="_blank">University of Michigan</a>
-        and an incoming software engineer at
-        <a href="https://stripe.com/" target="_blank">Stripe</a>.
-      </h2>
+    <div
+      :class="[
+        isInView ? 'in-view section-body' : 'section-body',
+        'flex flex-col md:flex-row justify-between items-start gap-6',
+      ]"
+    >
+      <div>
+        <div
+          class="text-blueWhite text-[2.3rem] sm:text-[3.5rem] lg:text-[4.8rem] font-medium leading-[2.6rem] sm:leading-[3.8rem] lg:leading-[5.1rem] transform-normal-case"
+        >
+          I'm Abigail Ng,
+        </div>
+        <div
+          class="text-grey text-[2.3rem] sm:text-[3.5rem] lg:text-[4.8rem] font-medium leading-[2.6rem] sm:leading-[3.8rem] lg:leading-[5.1rem] transform-normal-case"
+        >
+          web developer.
+        </div>
+        <div class="text-blueWhite text-lg leading-6 mt-2">
+          I'm a software engineer who specializes in full stack development. I
+          find joy in frontend design and discovering solutions to puzzling
+          problems through creative means.
+        </div>
+      </div>
+      <img
+        class="shrink-0 max-w-[80%] md:max-w-[35%] lg:max-w-[30%] md:self-center"
+        src="./images/portrait.png"
+      />
     </div>
   </div>
 </template>
-
-<style scoped>
-h1 {
-  color: #b0adb6;
-  font-size: 2.3rem;
-  font-weight: 500;
-  line-height: 2.6rem;
-  text-transform: none;
-}
-
-#name {
-  color: #f5f1ff;
-}
-
-@media (min-width: 480px) {
-  h1 {
-    font-size: 3.5rem;
-    line-height: 3.8rem;
-  }
-}
-
-@media (min-width: 768px) {
-  h1 {
-    font-size: 4.8rem;
-    line-height: 5.1rem;
-  }
-}
-
-@media (min-width: 1024px) {
-}
-</style>

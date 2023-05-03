@@ -5,7 +5,10 @@
     "timeframe": "May 2022 - July 2022",
     "description": "caseStudio",
     "frameworks": ["Ruby", "JavaScript", "HTML", "Full-stack", "MongoDB"],
-    "links": []
+    "links": [],
+    "coverPhoto": "cover",
+    "photoPrefix": "stripe",
+    "photos": []
   },
   {
     "name": "Stripe - Agent Satisfaction",
@@ -27,7 +30,10 @@
         "link": "https://discord.com/oauth2/authorize?client_id=839639502767259669&permissions=11328&scope=bot%20applications.commands",
         "icon": "DiscordIcon"
       }
-    ]
+    ],
+    "coverPhoto": "bought",
+    "photoPrefix": "moolah",
+    "photos": []
   },
   {
     "name": "Meta - Community Messaging Audio Rooms",
@@ -43,6 +49,9 @@
     "timeframe": "January 2023 - April 2023",
     "description": "chariot",
     "frameworks": ["Next.js", "Vue.js", "Tailwind", "Front-end", "JavaScript"],
-    "links": []
+    "links": [],
+    "coverPhoto": "dashboard",
+    "photoPrefix": "chariot",
+    "photos": []
   }
 ]

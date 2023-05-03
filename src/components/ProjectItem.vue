@@ -2,6 +2,8 @@
 import { onMounted, onUnmounted, ref } from "vue";
 import axios from "axios";
 
+import FlipIcon from "./icons/FlipIcon.vue";
+
 const props = defineProps({
   details: JSON,
   index: Number,
@@ -11,6 +13,7 @@ const opened = ref(false);
 const computedPadding = ref({});
 const hovered = ref(false);
 const descriptionHTML = ref("<div></div>");
+const coverImage = ref();
 
 function computePadding() {
   const backWindow =
@@ -71,6 +74,16 @@ onMounted(() => {
       // compute padding only after the description has been loaded in
       setTimeout(computePadding, 100);
     });
+  if (props.details.coverPhoto) {
+    axios
+      .get(
+        `https://raw.githubusercontent.com/abbyjng/abbyjng.github.io/gh-pages/projects/images/${props.details.photoPrefix}-${props.details.coverPhoto}.png`
+      )
+      .then((response) => {
+        console.log(response.data);
+        coverImage.value = response.data;
+      });
+  }
 });
 
 onUnmounted(() => {
@@ -97,8 +110,14 @@ onUnmounted(() => {
           </p>
           <p class="project-category">//{{ details.category }}</p>
         </div>
-        <div :class="hovered ? 'hovered project-expand' : 'project-expand'">
+        <div
+          :class="[
+            hovered ? 'hovered project-expand' : 'project-expand',
+            'flex gap-1 items-center',
+          ]"
+        >
           Read more
+          <FlipIcon class="w-3" />
         </div>
       </div>
 

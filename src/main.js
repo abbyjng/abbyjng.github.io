@@ -1,4 +1,5 @@
 import { createApp } from "vue";
+import "./style.css";
 import App from "./App.vue";
 import VueClickAway from "vue3-click-away";
 import CodeIcon from "./components/icons/CodeIcon.vue";
