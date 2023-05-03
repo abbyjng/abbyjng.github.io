@@ -54,7 +54,7 @@ onUnmounted(() => {
     <TheNavbar current="" />
   </header>
 
-  <main class="max-w-[1280px] mx-[10%]">
+  <main class="max-w-[1024px] mx-[10%]">
     <div id="intro" class="section">
       <IntroSection :isInView="introInView" />
     </div>

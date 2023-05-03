@@ -7,7 +7,7 @@ defineProps({
 <template>
   <div>
     <div
-      class="absolute bg-blueWhite w-screen h-[calc(100%+10vh)] -left-[10vw] -top-[3vh]"
+      class="absolute bg-blueWhite w-screen h-[calc(100%+10vh)] -top-[3vh] -left-[max(calc(50vw-512px),10vw)]"
     >
       <!-- top white triangle -->
       <div

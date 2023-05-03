@@ -13,7 +13,6 @@ const opened = ref(false);
 const computedPadding = ref({});
 const hovered = ref(false);
 const descriptionHTML = ref("<div></div>");
-const coverImage = ref();
 
 function computePadding() {
   const backWindow =
@@ -74,16 +73,6 @@ onMounted(() => {
       // compute padding only after the description has been loaded in
       setTimeout(computePadding, 100);
     });
-  if (props.details.coverPhoto) {
-    axios
-      .get(
-        `https://raw.githubusercontent.com/abbyjng/abbyjng.github.io/gh-pages/projects/images/${props.details.photoPrefix}-${props.details.coverPhoto}.png`
-      )
-      .then((response) => {
-        console.log(response.data);
-        coverImage.value = response.data;
-      });
-  }
 });
 
 onUnmounted(() => {
@@ -124,6 +113,11 @@ onUnmounted(() => {
       <p class="project-timeframe">
         {{ details.timeframe }}
       </p>
+      <!-- <img
+        :src="`https://raw.githubusercontent.com/abbyjng/abbyjng.github.io/gh-pages/projects/images/${props.details.photoPrefix}-${props.details.coverPhoto}.png`"
+        v-if="props.details.coverPhoto"
+        class="w-1/2 m-1"
+      /> -->
       <div class="project-bottom-bar">
         <div class="project-links">
           <div class="project-link" v-for="link in details.links" :key="link">
