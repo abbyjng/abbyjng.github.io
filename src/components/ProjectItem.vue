@@ -122,6 +122,20 @@ onMounted(() => {
       // compute padding only after the description has been loaded in
       setTimeout(computePadding, 100);
     });
+  if (props.details.coverPhoto) {
+    const coverPhoto = document.querySelector("#coverPhoto" + props.index);
+    coverPhoto.addEventListener("load", () => {
+      if (props.index === 1 || props.index === 2) {
+        const otherCoverPhoto = document.querySelector(
+          "#coverPhoto" + (props.index === 1 ? "2" : "1")
+        );
+        otherCoverPhoto.addEventListener("load", () => {
+          setTimeout(computePadding, 100);
+        });
+      }
+      setTimeout(computePadding, 100);
+    });
+  }
 });
 
 onUnmounted(() => {
@@ -191,6 +205,7 @@ onUnmounted(() => {
               <img
                 :src="`https://raw.githubusercontent.com/abbyjng/abbyjng.github.io/gh-pages/projects/images/${props.details.photoPrefix}-${props.details.coverPhoto}.png`"
                 v-if="props.details.coverPhoto"
+                :id="'coverPhoto' + index"
                 class="my-6 rounded-lg w-full"
               />
               <img
@@ -210,7 +225,7 @@ onUnmounted(() => {
           </div>
         </div>
       </div>
-      <div class="flex justify-between mt-3 flex-wrap">
+      <div class="flex justify-between mt-3 gap-x-2.5 flex-wrap">
         <div class="flex gap-x-2.5">
           <div v-for="link in details.links" :key="link">
             <a
