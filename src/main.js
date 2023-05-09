@@ -2,15 +2,15 @@ import { createApp } from "vue";
 import "./style.css";
 import App from "./App.vue";
 import VueClickAway from "vue3-click-away";
-import CodeIcon from "./components/icons/CodeIcon.vue";
-import DiscordIcon from "./components/icons/DiscordIcon.vue";
-import EmailIcon from "./components/icons/EmailIcon.vue";
-import GithubIcon from "./components/icons/GithubIcon.vue";
-import LinkedInIcon from "./components/icons/LinkedInIcon.vue";
+import CodeIcon from "./components/svgs/CodeIcon.vue";
+import DiscordIcon from "./components/svgs/DiscordIcon.vue";
+import EmailIcon from "./components/svgs/EmailIcon.vue";
+import GithubIcon from "./components/svgs/GithubIcon.vue";
+import LinkedInIcon from "./components/svgs/LinkedInIcon.vue";
 import Vue3Lottie from "vue3-lottie";
 import "vue3-lottie/dist/style.css";
 
-import "./assets/main.css";
+import "./assets/base.css";
 
 const app = createApp(App);
 app.use(VueClickAway);

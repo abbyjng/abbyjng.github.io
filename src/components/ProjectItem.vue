@@ -2,7 +2,7 @@
 import { onMounted, onUnmounted, ref } from "vue";
 import axios from "axios";
 
-import FlipIcon from "./icons/FlipIcon.vue";
+import FlipIcon from "./svgs/FlipIcon.vue";
 
 const props = defineProps({
   details: JSON,
@@ -11,7 +11,6 @@ const props = defineProps({
 
 const opened = ref(false);
 const computedPadding = ref({});
-const hovered = ref(false);
 const descriptionHTML = ref("<div></div>");
 
 function computePadding() {
@@ -19,6 +18,25 @@ function computePadding() {
     document.getElementsByClassName("project-back")[props.index];
   const frontWindow =
     document.getElementsByClassName("project-front")[props.index];
+
+  let otherFrontWindowHeight = 0;
+  let otherBackWindowHeight = 0;
+
+  if (props.index === 1 || props.index === 2) {
+    const otherFrontWindow =
+      document.getElementsByClassName("project-front")[
+        props.index === 1 ? 2 : 1
+      ];
+    otherFrontWindowHeight = otherFrontWindow.offsetHeight;
+
+    const otherBackWindow =
+      document.getElementsByClassName("project-back")[
+        props.index === 1 ? 2 : 1
+      ];
+    otherBackWindow.style.position = "relative";
+    otherBackWindowHeight = otherBackWindow.offsetHeight;
+    otherBackWindow.style.position = "absolute";
+  }
 
   backWindow.style.position = "relative";
 
@@ -36,24 +54,55 @@ function computePadding() {
 
   computedPadding.value = {
     "--padding":
-      backWindowHeight - (frontWindowHeight - frontWindowPadding) + "px",
+      Math.max(
+        backWindowHeight - (frontWindowHeight - frontWindowPadding),
+        10
+      ) + "px",
+    "--closed-row-height":
+      Math.max(frontWindowHeight, otherFrontWindowHeight) + "px",
+    "--open-height": Math.max(backWindowHeight, otherFrontWindowHeight) + "px",
+    "--open-row-height":
+      Math.max(frontWindowHeight, otherBackWindowHeight) + "px",
   };
 
   backWindow.style.position = "absolute";
 }
 
+function removeRowOpenClass() {
+  const firstFrontWindow = document.getElementsByClassName("project-front")[1];
+  firstFrontWindow.classList.remove("row-open");
+  const secondFrontWindow = document.getElementsByClassName("project-front")[2];
+  secondFrontWindow.classList.remove("row-open");
+}
+
 function toggleClick() {
-  if (opened.value) {
-    opened.value = false;
-  } else {
-    opened.value = true;
+  if (props.index === 1 || props.index === 2) {
+    if (!opened.value) {
+      const otherFrontWindow =
+        document.getElementsByClassName("project-front")[
+          props.index === 1 ? 2 : 1
+        ];
+      otherFrontWindow.classList.add("row-open");
+    } else {
+      removeRowOpenClass();
+    }
+  } else if (!opened.value) {
+    removeRowOpenClass();
   }
+  opened.value = !opened.value;
 }
 
 function close() {
   if (opened.value) {
-    opened.value = false;
+    if (props.index === 1 || props.index === 2) {
+      const otherFrontWindow =
+        document.getElementsByClassName("project-front")[
+          props.index === 1 ? 2 : 1
+        ];
+      otherFrontWindow.classList.remove("row-open");
+    }
   }
+  opened.value = false;
 }
 
 var resizeTimer;
@@ -84,54 +133,97 @@ onUnmounted(() => {
   <div
     v-click-away="close"
     @click="toggleClick"
-    @mouseover="hovered = true"
-    @mouseleave="hovered = false"
-    :class="opened ? 'project-item open' : 'project-item closed'"
+    :class="[
+      opened ? 'open' : 'closed',
+      'group relative w-full cursor-pointer',
+    ]"
   >
-    <div class="project-back">
-      <div class="project-description" v-html="descriptionHTML"></div>
+    <div
+      class="project-back rounded-[10px] bg-[#2b2939]/[.7] backdrop-blur-sm p-2.5 absolute border-2 border-blueWhite"
+    >
+      <div
+        class="text-blueWhite text-base leading-[1.3rem] [&>div]:pb-2.5"
+        v-html="descriptionHTML"
+      ></div>
     </div>
-    <div class="project-front" :style="computedPadding">
-      <div class="project-header">
-        <div class="project-title">
-          <p class="project-name">
-            {{ details.name }}
-          </p>
-          <p class="project-category">//{{ details.category }}</p>
+    <div
+      class="project-front rounded-[10px] bg-[#2b2939]/[.7] backdrop-blur-sm p-2.5 hover:bg-[#36334a]/[.9] transition-[background-color] transition-300 relative border-2 border-brightPurple flex flex-col justify-between"
+      :style="computedPadding"
+    >
+      <div>
+        <div class="flex gap-2.5 items-end justify-between">
+          <div class="md:flex md:gap-x-2.5 md:items-end md:flex-wrap">
+            <p class="text-lg leading-[1.5rem] font-bold text-blueWhite">
+              {{ details.name }}
+            </p>
+            <p class="uppercase leading-[1.3rem] font-[monospace]">
+              //{{ details.category }}
+            </p>
+          </div>
+          <div
+            :class="[
+              'group-hover:text-brightPurple flex gap-1 items-center self-start whitespace-nowrap mr-2.5',
+            ]"
+          >
+            Read more
+            <FlipIcon class="w-3" />
+          </div>
         </div>
+
+        <p>
+          {{ details.timeframe }}
+        </p>
         <div
           :class="[
-            hovered ? 'hovered project-expand' : 'project-expand',
-            'flex gap-1 items-center',
+            'gap-10 items-center mx-4 justify-center',
+            index === 1 || index === 2
+              ? 'lg:flex lg:justify-between'
+              : 'md:flex md:justify-between',
           ]"
         >
-          Read more
-          <FlipIcon class="w-3" />
+          <div
+            :class="[
+              'relative w-full shrink-0',
+              index === 1 || index === 2 ? 'lg:w-1/2' : 'md:w-1/2',
+            ]"
+          >
+            <div>
+              <img
+                :src="`https://raw.githubusercontent.com/abbyjng/abbyjng.github.io/gh-pages/projects/images/${props.details.photoPrefix}-${props.details.coverPhoto}.png`"
+                v-if="props.details.coverPhoto"
+                class="my-6 rounded-lg w-full"
+              />
+              <img
+                :src="`https://raw.githubusercontent.com/abbyjng/abbyjng.github.io/gh-pages/projects/images/${props.details.photoPrefix}-icon.png`"
+                v-if="props.details.coverPhoto"
+                :class="[
+                  'absolute -right-3 -bottom-3 rounded-lg',
+                  index === 1 || index === 2
+                    ? 'lg:w-[50px] w-[75px]'
+                    : 'w-[75px]',
+                ]"
+              />
+            </div>
+          </div>
+          <div class="text-blueWhite text-base">
+            {{ props.details.summary }}
+          </div>
         </div>
       </div>
-
-      <p class="project-timeframe">
-        {{ details.timeframe }}
-      </p>
-      <!-- <img
-        :src="`https://raw.githubusercontent.com/abbyjng/abbyjng.github.io/gh-pages/projects/images/${props.details.photoPrefix}-${props.details.coverPhoto}.png`"
-        v-if="props.details.coverPhoto"
-        class="w-1/2 m-1"
-      /> -->
-      <div class="project-bottom-bar">
-        <div class="project-links">
-          <div class="project-link" v-for="link in details.links" :key="link">
-            <a :href="link.link">
+      <div class="flex justify-between mt-3 flex-wrap">
+        <div class="flex gap-x-2.5">
+          <div v-for="link in details.links" :key="link">
+            <a
+              :href="link.link"
+              target="_blank"
+              class="fill-blueWhite !transition !duration-300 !ease-linear hover:fill-brightPurple no-underline"
+            >
               <component v-bind:is="link.icon"></component>
             </a>
           </div>
         </div>
-        <div class="project-frameworks">
-          <div
-            class="project-framework"
-            v-for="framework in details.frameworks"
-            :key="framework"
-          >
+        <div class="flex gap-x-2.5 flex-wrap font-[monospace] justify-end">
+          <div v-for="framework in details.frameworks" :key="framework">
             {{ framework }};
           </div>
         </div>
@@ -141,38 +233,17 @@ onUnmounted(() => {
 </template>
 
 <style scoped>
-.project-item {
-  position: relative;
-  width: 100%;
-  margin-top: 20px;
-  cursor: pointer;
-}
-
-.project-front,
-.project-back {
-  border-radius: 10px;
-  background-color: rgba(43, 41, 57, 0.7);
-  backdrop-filter: blur(5px);
-  padding: 10px;
-}
-
-.project-front:hover {
-  background-color: rgba(54, 51, 74, 0.9);
-  transition: background-color 0.3s;
-}
-
-.project-back {
-  position: absolute;
-  border: 2px solid #f5f1ff;
-}
-
-.project-front {
-  position: relative;
-  border: 2px solid #927aff;
-}
-
 .open .project-front {
   padding-bottom: var(--padding);
+  height: var(--open-height);
+}
+
+.closed .project-front.row-open {
+  height: var(--open-row-height);
+}
+
+.closed .project-front:not(.row-open) {
+  height: var(--closed-row-height);
 }
 
 .closed .project-front,
@@ -183,7 +254,7 @@ onUnmounted(() => {
   right: 0px;
   z-index: 100;
   transition: top 0.3s, right 0.3s, bottom 0.3s, left 0.3s, padding-bottom 0.3s,
-    position 0.3s, z-index 0.3s;
+    position 0.3s, z-index 0.3s, height 0.2s;
 }
 
 .open .project-front,
@@ -193,21 +264,8 @@ onUnmounted(() => {
   left: 8px;
   right: -8px;
   z-index: 10;
-  transition: top 0.3s, right 0.3s, bottom 0.3s, left 0.3s, padding-bottom 0.3s,
-    position 0.3s, z-index 0.3s;
-}
-
-.project-name {
-  font-size: 1.2rem;
-  line-height: 1.5rem;
-  font-weight: 700;
-  color: #f5f1ff;
-}
-
-.project-category {
-  text-transform: uppercase;
-  line-height: 1.3rem;
-  font-family: monospace;
+  transition: top 0.3s, right 0.3s, bottom 0.3s, left 0.3s,
+    padding-bottom 0.3s 0.3s, position 0.3s 0.3s, z-index 0.3s, height 0.2s;
 }
 
 .open .project-front *,
@@ -220,85 +278,5 @@ onUnmounted(() => {
 .open .project-back * {
   opacity: 1;
   transition: opacity 0.3s ease-in-out;
-}
-
-.project-bottom-bar {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 12px;
-  flex-wrap: wrap;
-}
-
-.project-frameworks {
-  display: flex;
-  column-gap: 10px;
-  flex-wrap: wrap;
-  font-family: monospace;
-  justify-content: flex-end;
-}
-
-.project-description {
-  color: #f5f1ff;
-  font-size: 1rem;
-  line-height: 1.3rem;
-}
-
-.project-description:deep(div) {
-  padding-bottom: 10px;
-}
-
-.project-links {
-  display: flex;
-  column-gap: 10px;
-}
-
-a {
-  fill: #f5f1ff;
-  transition: fill 0.3s;
-}
-
-a:hover {
-  fill: #927aff;
-  transition: fill 0.3s;
-}
-
-a::before {
-  background-color: transparent;
-}
-
-a:hover::before {
-  background-color: transparent;
-}
-
-.project-header {
-  display: flex;
-  gap: 10px;
-  align-items: flex-end;
-  justify-content: space-between;
-}
-
-.project-expand {
-  align-self: flex-start;
-  white-space: nowrap;
-  margin-right: 10px;
-}
-
-.project-expand.hovered {
-  color: #927aff;
-}
-
-@media (min-width: 480px) {
-}
-
-@media (min-width: 768px) {
-  .project-title {
-    display: flex;
-    column-gap: 10px;
-    align-items: flex-end;
-    flex-wrap: wrap;
-  }
-}
-
-@media (min-width: 1024px) {
 }
 </style>

@@ -10,6 +10,7 @@
     "deploy": "sh deploy.sh"
   },
   "dependencies": {
+    "@emailjs/browser": "^3.11.0",
     "axios": "^1.2.6",
     "vue": "^3.2.45",
     "vue3-click-away": "^1.2.4",

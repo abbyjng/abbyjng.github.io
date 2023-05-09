@@ -24,7 +24,7 @@ function clickMenu() {
 <template>
   <div class="navbar">
     <div id="logo">
-      <a id="logo-link" href="#intro">
+      <a id="logo-link" href="#">
         <img src="./images/logo.png" />
       </a>
       <!-- <h1 id="name">Abigail Ng</h1> -->
@@ -38,6 +38,7 @@ function clickMenu() {
       :class="menuOpen ? 'open' : ''"
       @click="menuOpen = false"
     >
+      <NavbarItem name="home" :isCurrent="current == 'home'"></NavbarItem>
       <NavbarItem name="about" :isCurrent="current == 'about'"></NavbarItem>
       <NavbarItem
         name="projects"

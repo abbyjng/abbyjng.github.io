@@ -1,9 +1,9 @@
 <script setup>
 import { ref } from "vue";
 
-import EmailIcon from "./icons/EmailIcon.vue";
-import GithubIcon from "./icons/GithubIcon.vue";
-import LinkedInIcon from "./icons/LinkedInIcon.vue";
+import EmailIcon from "./svgs/EmailIcon.vue";
+import GithubIcon from "./svgs/GithubIcon.vue";
+import LinkedInIcon from "./svgs/LinkedInIcon.vue";
 
 const emailHover = ref(false);
 const githubHover = ref(false);
@@ -83,7 +83,7 @@ const linkedinHover = ref(false);
 }
 
 .icon-div {
-  background-image: linear-gradient(to left, #927aff, #927aff 50%, #ffffff 50%);
+  background-image: linear-gradient(to left, #cbc0fc, #cbc0fc 50%, #ffffff 50%);
   background-size: 200% 100%;
   background-position: 0;
   transition: all 0.3s ease-in-out;

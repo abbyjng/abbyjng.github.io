@@ -31,10 +31,10 @@ function isInView(sectionName) {
 }
 
 function handleScroll() {
-  introInView.value = isInView("intro");
-  aboutInView.value = isInView("about");
-  projectsInView.value = isInView("projects");
-  contactInView.value = isInView("contact");
+  introInView.value = isInView("introSection");
+  aboutInView.value = isInView("aboutSection");
+  projectsInView.value = isInView("projectsSection");
+  contactInView.value = isInView("contactSection");
 
   scrollY.value = window.scrollY;
 }
@@ -55,23 +55,26 @@ onUnmounted(() => {
   </header>
 
   <main class="max-w-[1024px] mx-[10%]">
-    <div id="intro" class="section">
+    <div id="introSection" class="section">
       <IntroSection :isInView="introInView" />
     </div>
-    <div id="about" class="section">
+    <div id="aboutSection" class="section relative">
+      <div id="about" class="absolute -top-[20vh]"></div>
       <AboutSection :isInView="aboutInView" />
     </div>
-    <div id="projects" class="section">
+    <div id="projectsSection" class="section relative">
+      <div id="projects" class="absolute top-0"></div>
       <ProjectsSection :isInView="projectsInView" />
     </div>
-    <div id="contact" class="section">
+    <div id="contactSection" class="section relative">
+      <div id="contact" class="absolute -top-[20vh]"></div>
       <ContactSection :isInView="contactInView" />
     </div>
     <TheFooter />
     <TheLogo />
     <BackToTopArrow
       :class="
-        scrollY >= 800 ? 'opacity-0' : 'opacity-1' + ' transition duration-300'
+        scrollY >= 800 ? 'opacity-1' : 'opacity-0' + ' transition duration-300'
       "
     />
   </main>

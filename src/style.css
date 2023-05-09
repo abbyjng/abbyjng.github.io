@@ -1,3 +1,65 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  #app {
+    @apply max-w-[1280px] my-0 mx-auto font-normal;
+  }
+
+  html {
+    @apply overflow-y-scroll scroll-smooth;
+  }
+
+  header {
+    @apply fixed top-0 left-0 right-0 z-[1000];
+  }
+
+  h1 {
+    @apply text-blueWhite text-2xl font-semibold tracking-[1px] leading-[1.8rem] uppercase;
+  }
+
+  svg {
+    @apply w-6 h-6;
+  }
+
+  a {
+    @apply text-[#927aff] no-underline transition-[color] duration-300 ease-in-out;
+  }
+
+  a:hover {
+    @apply text-[#7a60f0];
+  }
+
+  a::before:not(.no-underline) {
+    @apply content-[""] absolute w-full h-[1px] rounded-[1px] bg-brightPurple -bottom-0.5 left-0 origin-right scale-x-0 transition duration-300 ease-in-out;
+  }
+
+  a:hover::before:not(.no-underline) {
+    @apply bg-brightPurple origin-left scale-x-100;
+  }
+
+  b {
+    @apply font-bold text-[#af9eff];
+  }
+
+  .section {
+    @apply flex items-center min-h-[60vh] py-[150px];
+  }
+
+  .section-header {
+    @apply text-brightPurple font-[monospace] text-base leading-[1.8rem] md:text-2xl;
+  }
+
+  .section-body {
+    @apply pl-5 ml-0.5;
+  }
+
+  .section-body::before {
+    @apply content-[""] absolute w-[3px] h-full rounded-[1px] bg-brightPurple bottom-0 left-0 origin-bottom scale-y-0 transition duration-300 ease-in-out;
+  }
+
+  .section-body.in-view::before {
+    @apply bg-brightPurple origin-top scale-y-100;
+  }
+}

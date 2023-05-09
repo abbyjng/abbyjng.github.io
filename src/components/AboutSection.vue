@@ -49,11 +49,6 @@ defineProps({
           get a taste of what I love to do!
         </div>
       </div>
-      <!-- <img
-          class="w-[80vw] rounded-full max-w-[200px] my-0 mx-auto shadow-pixelPortrait"
-          src="./images/pixelPortrait.png"
-        /> -->
-      <!-- </div> -->
     </div>
   </div>
 </template>

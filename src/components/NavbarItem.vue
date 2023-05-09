@@ -12,14 +12,9 @@ defineProps({
 </script>
 
 <template>
-  <a :href="'#' + name" :class="isCurrent ? 'current' : ''">{{ name }}</a>
+  <a
+    :href="'#' + (name === 'home' ? '' : name)"
+    :class="[isCurrent ? 'text-brightPurple' : 'text-blueWhite', 'uppercase']"
+    >{{ name }}</a
+  >
 </template>
-
-<style scoped>
-a {
-  color: #f5f1ff;
-}
-a .current {
-  color: #927aff;
-}
-</style>

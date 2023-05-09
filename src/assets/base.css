@@ -1,33 +1,3 @@
-/* color palette from <https://github.com/vuejs/theme> */
-:root {
-  --vt-c-black: #1f1e25;
-  --vt-c-black-soft: #35333f;
-  --vt-c-black-mute: #3b3a42;
-
-  --vt-c-indigo: #2c3e50;
-
-  --vt-c-divider-dark-1: rgba(84, 84, 84, 0.65);
-  --vt-c-divider-dark-2: rgba(84, 84, 84, 0.48);
-
-  --vt-c-text-dark-1: #ffffff;
-  --vt-c-text-dark-2: rgba(235, 235, 235, 0.64);
-}
-
-/* semantic color variables for this project */
-:root {
-  --color-background: var(--vt-c-black);
-  --color-background-soft: var(--vt-c-black-soft);
-  --color-background-mute: var(--vt-c-black-mute);
-
-  --color-border: var(--vt-c-divider-dark-2);
-  --color-border-hover: var(--vt-c-divider-dark-1);
-
-  --color-heading: var(--vt-c-text-dark-1);
-  --color-text: var(--vt-c-text-dark-2);
-
-  --section-gap: 160px;
-}
-
 *,
 *::before,
 *::after {
@@ -39,9 +9,8 @@
 
 body {
   min-height: 100vh;
-  color: var(--color-text);
-  background: var(--color-background);
-  line-height: 1.6;
+  color: #f1f7fc;
+  background: #1f1e25;
   font-family: "Lato", "Monteserrat", Verdana, Geneva, Tahoma, sans-serif;
   font-size: 15px;
   letter-spacing: 0.02em;

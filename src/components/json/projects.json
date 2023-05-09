@@ -7,16 +7,21 @@
     "frameworks": ["Ruby", "JavaScript", "HTML", "Full-stack", "MongoDB"],
     "links": [],
     "coverPhoto": "cover",
+    "summary": "Took ownership of two key features of Case Studio, the agent-facing side of Stripe's helpdesk platform.",
     "photoPrefix": "stripe",
     "photos": []
   },
   {
-    "name": "Stripe - Agent Satisfaction",
-    "category": "Summer internship project",
-    "timeframe": "July 2022 - August 2022",
-    "description": "asat",
-    "frameworks": ["Ruby", "JavaScript", "HTML", "Full-stack", "MongoDB"],
-    "links": []
+    "name": "Chariot",
+    "category": "Summer internship",
+    "timeframe": "January 2023 - April 2023",
+    "description": "chariot",
+    "frameworks": ["Next.js", "Vue.js", "Tailwind", "Front-end", "JavaScript"],
+    "links": [],
+    "coverPhoto": "dashboard",
+    "summary": "Reworked the dashboard frontend and took ownership of four different integration features for Chariot's userbase.",
+    "photoPrefix": "chariot",
+    "photos": []
   },
   {
     "name": "Moolah - Discord bot",
@@ -32,6 +37,7 @@
       }
     ],
     "coverPhoto": "bought",
+    "summary": "A Discord bot designed to make group finances easy and personal budget tracking simple.",
     "photoPrefix": "moolah",
     "photos": []
   },
@@ -43,15 +49,13 @@
     "frameworks": ["Objective-C", "C", "Mobile app", "iOS"],
     "links": []
   },
+
   {
-    "name": "Chariot",
-    "category": "Summer internship",
-    "timeframe": "January 2023 - April 2023",
-    "description": "chariot",
-    "frameworks": ["Next.js", "Vue.js", "Tailwind", "Front-end", "JavaScript"],
-    "links": [],
-    "coverPhoto": "dashboard",
-    "photoPrefix": "chariot",
-    "photos": []
+    "name": "Stripe - Agent Satisfaction",
+    "category": "Summer internship project",
+    "timeframe": "July 2022 - August 2022",
+    "description": "asat",
+    "frameworks": ["Ruby", "JavaScript", "HTML", "Full-stack", "MongoDB"],
+    "links": []
   }
 ]

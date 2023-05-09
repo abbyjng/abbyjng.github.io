@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue";
-import UpArrowIcon from "./icons/UpArrowIcon.vue";
+import UpArrowIcon from "./svgs/UpArrowIcon.vue";
 
 const hovered = ref(false);
 </script>
