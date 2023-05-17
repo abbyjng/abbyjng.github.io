@@ -223,12 +223,12 @@ onUnmounted(() => {
           </template>
           <ArrowIcon
             v-if="currImage !== 0"
-            class="-rotate-90 fill-blueWhite hover:fill-brightPurple transition-fill duration-300 cursor-pointer absolute lg:top-[50%] left-[calc(50%-100px)] bottom-12"
+            class="-rotate-90 fill-blueWhite hover:fill-brightPurple transition-fill duration-300 cursor-pointer absolute lg:top-[50%] left-[calc(50%-100px)] lg:left-[10vw] bottom-12"
             @click.stop="currImage--"
           />
           <ArrowIcon
             v-if="currImage + 1 !== props.details.photos.length"
-            class="rotate-90 fill-blueWhite hover:fill-brightPurple transition-fill duration-300 cursor-pointer absolute lg:top-[50%] right-[calc(50%-100px)] bottom-12"
+            class="rotate-90 fill-blueWhite hover:fill-brightPurple transition-fill duration-300 cursor-pointer absolute lg:top-[50%] right-[calc(50%-100px)] lg:right-[10vw] bottom-12"
             @click.stop="currImage++"
           />
         </div>
