@@ -46,16 +46,16 @@ function submitForm(event) {
   }
 }
 </script>
- 
+
 <template>
   <PurpleCurve
-    class="absolute w-screen h-auto bottom-[calc(100%-51px)] -left-[max(calc(50vw-512px),10vw)]"
+    class="absolute w-[100vw] h-auto bottom-[calc(100%-51px)] -left-[max(calc(50vw-512px),10vw)]"
   />
   <WhiteCurve
-    class="absolute w-screen h-auto bottom-[calc(100%-51px)] -left-[max(calc(50vw-512px),10vw)]"
+    class="absolute w-[100vw] h-auto bottom-[calc(100%-51px)] -left-[max(calc(50vw-512px),10vw)]"
   />
   <div
-    class="absolute w-screen h-[calc(100%-50px)] bottom-0 -left-[max(calc(50vw-512px),10vw)] bg-blueWhite"
+    class="absolute w-[100vw] h-[calc(100%-50px)] bottom-0 -left-[max(calc(50vw-512px),10vw)] bg-blueWhite"
   />
   <div class="md:mb-[5vh] w-full">
     <p class="section-header">connect();</p>
