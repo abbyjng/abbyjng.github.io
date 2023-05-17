@@ -12,8 +12,8 @@ onMounted(() => {
 <template>
   <div
     :class="[
-      transform ? 'transform opacity-0 -z-[1] bg-transparent' : '',
-      'fixed justify-center items-center top-0 left-0 right-0 bottom-0 z-[10000] flex overflow-hidden bg-[#2b2a34]',
+      transform ? 'transform opacity-0 z-[-1] bg-transparent' : 'z-[10000]',
+      'fixed justify-center items-center top-0 left-0 right-0 bottom-0 flex overflow-hidden bg-[#2b2a34]',
     ]"
   >
     <LottieAnimation
