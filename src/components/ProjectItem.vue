@@ -216,7 +216,7 @@ onUnmounted(() => {
               >
                 <img
                   :src="`https://raw.githubusercontent.com/abbyjng/abbyjng.github.io/gh-pages/projects/images/${props.details.photoPrefix}-${photo}.png`"
-                  class="max-h-[80vh]"
+                  class="max-h-[80vh] max-w-[75vw]"
                 />
               </div>
             </transition>
