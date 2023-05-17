@@ -216,19 +216,19 @@ onUnmounted(() => {
               >
                 <img
                   :src="`https://raw.githubusercontent.com/abbyjng/abbyjng.github.io/gh-pages/projects/images/${props.details.photoPrefix}-${photo}.png`"
-                  class="max-h-[80vh] max-w-[75vw]"
+                  class="max-h-[calc(80vh-100px)] lg:max-h-[80vh] md:max-w-[75vw]"
                 />
               </div>
             </transition>
           </template>
           <ArrowIcon
             v-if="currImage !== 0"
-            class="-rotate-90 fill-blueWhite hover:fill-brightPurple transition-fill duration-300 cursor-pointer absolute top-[50%] left-[10vw]"
+            class="-rotate-90 fill-blueWhite hover:fill-brightPurple transition-fill duration-300 cursor-pointer absolute lg:top-[50%] left-[calc(50%-100px)] bottom-12"
             @click.stop="currImage--"
           />
           <ArrowIcon
             v-if="currImage + 1 !== props.details.photos.length"
-            class="rotate-90 fill-blueWhite hover:fill-brightPurple transition-fill duration-300 cursor-pointer absolute top-[50%] right-[10vw]"
+            class="rotate-90 fill-blueWhite hover:fill-brightPurple transition-fill duration-300 cursor-pointer absolute lg:top-[50%] right-[calc(50%-100px)] bottom-12"
             @click.stop="currImage++"
           />
         </div>
