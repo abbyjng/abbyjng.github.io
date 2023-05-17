@@ -22,20 +22,39 @@ function clickMenu() {
 </script>
 
 <template>
-  <div class="navbar">
-    <div id="logo">
-      <a id="logo-link" href="#">
-        <img src="./images/logo.png" />
+  <div
+    class="flex justify-between items-end p-10 bg-darkPurple/80 backdrop-blur-sm"
+  >
+    <div>
+      <a class="no-underline" href="#">
+        <img src="./images/logo.png" class="h-[30px] mb-[5px]" />
       </a>
-      <!-- <h1 id="name">Abigail Ng</h1> -->
     </div>
-    <div id="menu-button" :class="menuOpen ? 'clicked' : ''" @click="clickMenu">
-      <div id="top"></div>
-      <div id="bottom"></div>
+    <div
+      id="menu-button"
+      :class="[
+        menuOpen ? 'clicked' : '',
+        'relative w-[30px] h-[30px] cursor-pointer z-[1000] md:hidden',
+      ]"
+      @click="clickMenu"
+    >
+      <div
+        id="top"
+        class="absolute w-[30px] h-0.5 bg-blueWhite top-2 left-0 right-0"
+      ></div>
+      <div
+        id="bottom"
+        class="absolute w-[30px] h-0.5 bg-blueWhite bottom-2 left-0 right-0"
+      ></div>
     </div>
     <div
       id="navbar-links"
-      :class="menuOpen ? 'open' : ''"
+      :class="[
+        menuOpen
+          ? 'flex flex-col top-0 bottom-0 right-0 left-0 h-screen items-center justify-center fixed bg-darkPurple/90 backdrop-blur'
+          : 'hidden',
+        'transition duration-[400ms] ease-in-out md:h-auto md:relative md:flex md:flex-row gap-5 opacity-100 bg-transparent',
+      ]"
       @click="menuOpen = false"
     >
       <NavbarItem name="home" :isCurrent="current == 'home'"></NavbarItem>
@@ -50,88 +69,11 @@ function clickMenu() {
 </template>
 
 <style scoped>
-.navbar {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-end;
-  padding: 40px;
-  background-color: rgba(31, 30, 37, 0.9);
-  backdrop-filter: blur(5px);
-}
-
-#navbar-links {
-  display: none;
-  background-color: none;
-  backdrop-filter: none;
-  opacity: 0;
-  transition: opacity 0.4s ease-in-out;
-}
-
-#navbar-links.open {
-  display: flex;
-  flex-direction: column;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  height: 100vh;
-  align-items: center;
-  justify-content: center;
-  position: fixed;
-  background-color: rgba(31, 30, 37, 0.9);
-  opacity: 1;
-}
-
-#logo {
-  display: flex;
-  align-items: flex-end;
-  column-gap: 10px;
-}
-
-img {
-  height: 30px;
-  margin-bottom: 5px;
-}
-
-#logo-link::before {
-  background-color: transparent;
-}
-
-#logo-link:hover::before {
-  background-color: transparent;
-}
-
-#name {
-  display: none;
-}
-
-#menu-button {
-  position: relative;
-  width: 30px;
-  height: 30px;
-  cursor: pointer;
-  z-index: 1000;
-}
-
-#menu-button div {
-  position: absolute;
-  width: 30px;
-  height: 2px;
-  background: #f5f1ff;
-}
-
 #menu-button #top {
-  top: 8px;
-  left: 0;
-  right: 0;
   transition: rotate 0.2s, top 0.2s 0.2s ease-out;
 }
 
 #menu-button #bottom {
-  bottom: 8px;
-  left: 0;
-  right: 0;
   transition: rotate 0.2s, bottom 0.2s 0.2s ease-out;
 }
 
@@ -145,36 +87,5 @@ img {
   bottom: 14px;
   rotate: -45deg;
   transition: bottom 0.2s, rotate 0.2s 0.2s ease-out;
-}
-
-@media (min-width: 480px) {
-  #name {
-    display: block;
-    color: #f5f1ff;
-    font-weight: 500;
-    font-size: 1.8rem;
-    line-height: 2.1rem;
-    align-self: flex-end;
-  }
-}
-
-@media (min-width: 768px) {
-  #menu-button {
-    display: none;
-  }
-
-  #navbar-links {
-    height: auto;
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-    opacity: 1;
-    background-color: none;
-    backdrop-filter: none;
-  }
-}
-
-@media (min-width: 1024px) {
 }
 </style>

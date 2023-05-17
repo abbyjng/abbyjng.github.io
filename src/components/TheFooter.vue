@@ -11,11 +11,16 @@ const linkedinHover = ref(false);
 </script>
 
 <template>
-  <div class="footer">
-    <div id="shape"></div>
+  <div
+    class="fixed left-0 bottom-0 right-0 flex justify-center items-end gap-6 pb-5 pt-[30px] bg-darkPurple/50 backdrop-blur-sm z-[1000] sm:gap-4 sm:bg-transparent sm:backdrop-blur-none"
+  >
+    <div
+      class="hidden sm:block sm:absolute sm:top-1/2 sm:left-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 sm:h-[100px] sm:w-[200px] sm:rounded-t-full sm:bg-darkPurple/50 sm:backdrop-blur-sm"
+    ></div>
     <a
       href="mailto:ajng@umich.edu"
       target="_blank"
+      class="no-underline"
       @mouseover="emailHover = true"
       @mouseleave="emailHover = false"
     >
@@ -29,6 +34,7 @@ const linkedinHover = ref(false);
     <a
       href="https://github.com/abbyjng"
       target="_blank"
+      class="no-underline"
       @mouseover="githubHover = true"
       @mouseleave="githubHover = false"
     >
@@ -40,8 +46,9 @@ const linkedinHover = ref(false);
       </div>
     </a>
     <a
-      href="https://www.linkedin.com/in/abigail-j-ng/ "
+      href="https://www.linkedin.com/in/abigail-j-ng/"
       target="_blank"
+      class="no-underline"
       @mouseover="linkedinHover = true"
       @mouseleave="linkedinHover = false"
     >
@@ -56,34 +63,8 @@ const linkedinHover = ref(false);
 </template>
 
 <style scoped>
-.footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: flex-end;
-  gap: 25px;
-  padding-bottom: 20px;
-  padding-top: 30px;
-  background-color: rgba(43, 41, 57, 0.5);
-  backdrop-filter: blur(5px);
-  z-index: 1000;
-}
-
-.footer #shape {
-  display: none;
-}
-
-.footer a::before,
-.footer a:hover::before {
-  background-color: transparent;
-}
-
 .icon-div {
-  background-image: linear-gradient(to left, #cbc0fc, #cbc0fc 50%, #ffffff 50%);
+  background-image: linear-gradient(to left, #c2b5fc, #c2b5fc 50%, #ffffff 50%);
   background-size: 200% 100%;
   background-position: 0;
   transition: all 0.3s ease-in-out;
@@ -106,32 +87,5 @@ const linkedinHover = ref(false);
 #github-icon {
   -webkit-clip-path: url(#github-clip);
   clip-path: url(#github-clip);
-}
-
-@media (min-width: 480px) {
-  .footer {
-    gap: 15px;
-    background-color: transparent;
-    backdrop-filter: none;
-  }
-
-  .footer #shape {
-    display: block;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    height: 100px;
-    width: 200px;
-    border-radius: 150px 150px 0 0;
-    background-color: rgba(43, 41, 57, 0.5);
-    backdrop-filter: blur(5px);
-  }
-}
-
-@media (min-width: 768px) {
-}
-
-@media (min-width: 1024px) {
 }
 </style>

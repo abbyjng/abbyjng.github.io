@@ -6,13 +6,6 @@ module.exports = {
     "./public/projects/*.html",
   ],
   theme: {
-    colors: {
-      brightPurple: "#7761E8",
-      blueWhite: "#F1F7FC",
-      darkPurple: "#1F1E25",
-      grey: "#94979A",
-      lightPurple: "#AF9EFF",
-    },
     screens: {
       sm: "480px",
       // => @media (min-width: 480px) { ... }
@@ -26,6 +19,13 @@ module.exports = {
     extend: {
       boxShadow: {
         pixelPortrait: "10px 0 #1F1E25, -10px 0 #7761E8",
+      },
+      colors: {
+        brightPurple: "#7761E8",
+        blueWhite: "#F1F7FC",
+        darkPurple: "#1F1E25",
+        grey: "#94979A",
+        lightPurple: "#AF9EFF",
       },
     },
   },

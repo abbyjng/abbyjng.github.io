@@ -10,7 +10,12 @@ onMounted(() => {
 </script>
 
 <template>
-  <div :class="transform ? 'transform logo-screen' : 'logo-screen'">
+  <div
+    :class="[
+      transform ? 'transform opacity-0 -z-[1] bg-transparent' : '',
+      'fixed justify-center items-center top-0 left-0 right-0 bottom-0 z-[10000] flex overflow-hidden bg-[#2b2a34]',
+    ]"
+  >
     <LottieAnimation
       :animationData="splash"
       background="transparent"
@@ -18,36 +23,13 @@ onMounted(() => {
       width="auto"
       height="auto"
       :loop="false"
-      class="animation"
+      class="shrink-0 min-w-[100%] min-h-[100%]"
     ></LottieAnimation>
   </div>
 </template>
 
 <style scoped>
-.logo-screen {
-  position: fixed;
-  justify-content: center;
-  align-items: center;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 10000;
-  display: flex;
-  overflow: hidden;
-  background-color: #2b2a34;
-}
-
-.animation {
-  flex-shrink: 0;
-  min-width: 100%;
-  min-height: 100%;
-}
-
-.transform.logo-screen {
-  opacity: 0;
-  z-index: -1;
-  background-color: transparent;
+.transform {
   transition-delay: 3s, 3s, 0.5s;
   transition-property: opacity, z-index, background-color;
 }
