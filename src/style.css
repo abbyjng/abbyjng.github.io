@@ -39,10 +39,6 @@
     @apply bg-brightPurple origin-left scale-x-100;
   }
 
-  b {
-    @apply font-bold text-[#af9eff];
-  }
-
   .section {
     @apply flex items-center min-h-[60vh] py-[150px];
   }

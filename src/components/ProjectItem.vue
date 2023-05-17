@@ -3,6 +3,7 @@ import { onMounted, onUnmounted, ref } from "vue";
 import axios from "axios";
 
 import FlipIcon from "./svgs/FlipIcon.vue";
+import ArrowIcon from "./svgs/ArrowIcon.vue";
 
 const props = defineProps({
   details: JSON,
@@ -12,6 +13,7 @@ const props = defineProps({
 const opened = ref(false);
 const computedPadding = ref({});
 const descriptionHTML = ref("<div></div>");
+const currImage = ref(-1);
 
 function computePadding() {
   const backWindow =
@@ -115,28 +117,65 @@ onMounted(() => {
   window.addEventListener("resize", delayResizeUpdate);
   axios
     .get(
-      `https://raw.githubusercontent.com/abbyjng/abbyjng.github.io/gh-pages/projects/${props.details.description}.html`
+      // `https://raw.githubusercontent.com/abbyjng/abbyjng.github.io/gh-pages/projects/${props.details.description}.html` TODO uncomment before deploying
+      `../../projects/${props.details.description}.html`
     )
     .then((response) => {
       descriptionHTML.value = response.data;
       // compute padding only after the description has been loaded in
-      setTimeout(computePadding, 100);
-    });
-  if (props.details.coverPhoto) {
-    const coverPhoto = document.querySelector("#coverPhoto" + props.index);
-    coverPhoto.addEventListener("load", () => {
-      if (props.index === 1 || props.index === 2) {
-        const otherCoverPhoto = document.querySelector(
-          "#coverPhoto" + (props.index === 1 ? "2" : "1")
-        );
-        otherCoverPhoto.addEventListener("load", () => {
-          setTimeout(computePadding, 100);
-        });
+
+      if (props.details.coverPhoto) {
+        // wait for cover photo to load in
+        const coverPhoto = document.querySelector("#coverPhoto" + props.index);
+        let otherCoverPhoto;
+        if (props.index === 1 || props.index === 2) {
+          otherCoverPhoto = document.querySelector(
+            "#coverPhoto" + (props.index === 1 ? "2" : "1")
+          );
+        }
+
+        if (coverPhoto.offsetHeight === 0) {
+          // if this cover photo is not loaded, wait until it is
+          coverPhoto.addEventListener("load", () => {
+            if (otherCoverPhoto) {
+              // if there is another photo in the row to wait for, check it
+              checkOtherPhotoLoaded(otherCoverPhoto);
+            } else {
+              setTimeout(computePadding, 100);
+            }
+          });
+        } else {
+          // if this photo is loaded, check for another photo in the row to wait for
+          if (otherCoverPhoto) {
+            checkOtherPhotoLoaded(otherCoverPhoto);
+          } else {
+            setTimeout(computePadding, 100);
+          }
+        }
+      } else {
+        // otherwise okay to compute padding
+        setTimeout(computePadding, 100);
       }
+    });
+});
+
+function checkOtherPhotoLoaded(otherCoverPhoto) {
+  if (otherCoverPhoto.offsetHeight === 0) {
+    otherCoverPhoto.addEventListener("load", () => {
       setTimeout(computePadding, 100);
     });
+  } else {
+    setTimeout(computePadding, 100);
   }
-});
+}
+
+function openCarousel(event) {
+  currImage.value = parseInt(event.target.dataset.index);
+}
+
+function closeCarousel() {
+  currImage.value = -1;
+}
 
 onUnmounted(() => {
   window.removeEventListener("resize", delayResizeUpdate);
@@ -152,13 +191,81 @@ onUnmounted(() => {
       'group relative w-full cursor-pointer',
     ]"
   >
-    <div
-      class="project-back rounded-[10px] bg-[#2b2939]/[.7] backdrop-blur-sm p-2.5 absolute border-2 border-blueWhite"
+    <transition
+      enter-active-class="transition-opacity opacity-0 duration-300"
+      enter-to-class="opacity-100"
+      leave-active-class="transition-opacity duration-300"
+      leave-to-class="opacity-0"
     >
       <div
-        class="text-blueWhite text-base leading-[1.3rem] [&>div]:pb-2.5"
+        v-if="currImage !== -1 && props.details.photos"
+        class="fixed w-screen h-screen top-0 left-0 bg-darkPurple/50 backdrop-blur z-[5000] cursor-default"
+        @click.stop="closeCarousel"
+      >
+        <div class="w-full h-[90vh]">
+          <template v-for="(photo, index) in props.details.photos">
+            <transition
+              enter-active-class="transition opacity-0 duration-300"
+              enter-to-class="opacity-100"
+              leave-active-class="transition duration-300"
+              leave-to-class="opacity-0"
+            >
+              <div
+                v-if="index === currImage"
+                class="absolute w-full h-full flex justify-center items-center"
+              >
+                <img
+                  :src="`https://raw.githubusercontent.com/abbyjng/abbyjng.github.io/gh-pages/projects/images/${props.details.photoPrefix}-${photo}.png`"
+                  class="max-h-[80vh]"
+                />
+              </div>
+            </transition>
+          </template>
+          <ArrowIcon
+            v-if="currImage !== 0"
+            class="-rotate-90 fill-blueWhite hover:fill-brightPurple transition-fill duration-300 cursor-pointer absolute top-[50%] left-[10vw]"
+            @click.stop="currImage--"
+          />
+          <ArrowIcon
+            v-if="currImage + 1 !== props.details.photos.length"
+            class="rotate-90 fill-blueWhite hover:fill-brightPurple transition-fill duration-300 cursor-pointer absolute top-[50%] right-[10vw]"
+            @click.stop="currImage++"
+          />
+        </div>
+        <div class="flex justify-center gap-5 w-full">
+          <div
+            v-for="(_, index) in props.details.photos"
+            :class="[
+              'w-3 h-3 rounded-full border border-blueWhite',
+              index === currImage
+                ? 'bg-blueWhite'
+                : 'cursor-pointer hover:bg-blueWhite/50 transition duration-300',
+            ]"
+            @click.stop="currImage = index"
+          ></div>
+        </div>
+      </div>
+    </transition>
+    <div
+      class="project-back rounded-[10px] bg-[#2b2939]/[.7] backdrop-blur-sm p-2.5 md:p-4 absolute border-2 border-blueWhite"
+    >
+      <div
+        class="text-blueWhite text-base leading-[1.3rem]"
         v-html="descriptionHTML"
       ></div>
+      <div
+        v-if="props.details.photos && props.details.photos.length !== 0"
+        class="flex flex-wrap justify-center md:justify-end w-full mt-8 gap-3"
+      >
+        <div v-for="(photo, index) in props.details.photos">
+          <img
+            :src="`https://raw.githubusercontent.com/abbyjng/abbyjng.github.io/gh-pages/projects/images/${props.details.photoPrefix}-${photo}.png`"
+            :data-index="index"
+            class="rounded-lg w-24 h-24 object-cover object-left-top"
+            @click.stop="openCarousel"
+          />
+        </div>
+      </div>
     </div>
     <div
       class="project-front rounded-[10px] bg-[#2b2939]/[.7] backdrop-blur-sm p-2.5 hover:bg-[#36334a]/[.9] transition-[background-color] transition-300 relative border-2 border-brightPurple flex flex-col justify-between"
@@ -176,7 +283,7 @@ onUnmounted(() => {
           </div>
           <div
             :class="[
-              'group-hover:text-brightPurple flex gap-1 items-center self-start whitespace-nowrap mr-2.5',
+              'group-hover:text-lightPurple flex gap-1 items-center self-start whitespace-nowrap mr-2.5',
             ]"
           >
             Read more
@@ -206,6 +313,7 @@ onUnmounted(() => {
                 :src="`https://raw.githubusercontent.com/abbyjng/abbyjng.github.io/gh-pages/projects/images/${props.details.photoPrefix}-${props.details.coverPhoto}.png`"
                 v-if="props.details.coverPhoto"
                 :id="'coverPhoto' + index"
+                v-bind:is-loaded="true"
                 class="my-6 rounded-lg w-full"
               />
               <img
@@ -231,6 +339,7 @@ onUnmounted(() => {
             <a
               :href="link.link"
               target="_blank"
+              @click.stop
               class="fill-blueWhite !transition !duration-300 !ease-linear hover:fill-brightPurple no-underline"
             >
               <component v-bind:is="link.icon"></component>

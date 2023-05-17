@@ -27,6 +27,7 @@ const data = ref(json);
             href="https://raw.githubusercontent.com/abbyjng/abbyjng.github.io/gh-pages/files/Abigail_Ng_Resume.pdf"
             download
             class="no-underline text-blueWhite hover:text-blueWhite"
+            target="_blank"
             >Résumé</a
           >
         </div>

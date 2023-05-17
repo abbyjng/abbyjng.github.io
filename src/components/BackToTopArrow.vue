@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue";
-import UpArrowIcon from "./svgs/UpArrowIcon.vue";
+import ArrowIcon from "./svgs/ArrowIcon.vue";
 
 const hovered = ref(false);
 </script>
@@ -12,7 +12,7 @@ const hovered = ref(false);
     @mouseover="hovered = true"
     @mouseleave="hovered = false"
   >
-    <UpArrowIcon />
+    <ArrowIcon />
     <p :class="hovered ? 'hovered' : ''">Back to top</p>
   </a>
 </template>

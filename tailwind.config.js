@@ -1,12 +1,17 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
+  content: [
+    "./index.html",
+    "./src/**/*.{vue,js,ts,jsx,tsx}",
+    "./public/projects/*.html",
+  ],
   theme: {
     colors: {
       brightPurple: "#7761E8",
       blueWhite: "#F1F7FC",
       darkPurple: "#1F1E25",
       grey: "#94979A",
+      lightPurple: "#AF9EFF",
     },
     screens: {
       sm: "480px",

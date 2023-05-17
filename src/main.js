@@ -7,6 +7,7 @@ import DiscordIcon from "./components/svgs/DiscordIcon.vue";
 import EmailIcon from "./components/svgs/EmailIcon.vue";
 import GithubIcon from "./components/svgs/GithubIcon.vue";
 import LinkedInIcon from "./components/svgs/LinkedInIcon.vue";
+import LinkIcon from "./components/svgs/LinkIcon.vue";
 import Vue3Lottie from "vue3-lottie";
 import "vue3-lottie/dist/style.css";
 
@@ -21,6 +22,7 @@ app
   .component("DiscordIcon", DiscordIcon)
   .component("EmailIcon", EmailIcon)
   .component("GithubIcon", GithubIcon)
-  .component("LinkedInIcon", LinkedInIcon);
+  .component("LinkedInIcon", LinkedInIcon)
+  .component("LinkIcon", LinkIcon);
 
 app.mount("#app");
