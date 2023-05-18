@@ -48,7 +48,7 @@
         "icon": "DiscordIcon"
       }
     ],
-    "coverPhoto": "bought",
+    "coverPhoto": "cover",
     "summary": "A Discord bot designed to make group finances easy and personal budget tracking simple.",
     "photoPrefix": "moolah",
     "photos": ["bought-wip", "bought", "log", "personal-pin", "personal-bought"]
