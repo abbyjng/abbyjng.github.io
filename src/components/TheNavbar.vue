@@ -23,7 +23,7 @@ function clickMenu() {
 
 <template>
   <div
-    class="flex justify-between items-end p-10 bg-darkPurple/80 backdrop-blur-sm"
+    class="flex justify-between items-center px-10 pb-6 py-8 bg-darkPurple/80 backdrop-blur-sm"
   >
     <div>
       <a class="no-underline" href="#">

@@ -32,15 +32,11 @@ const data = ref(json);
           >
         </div>
       </div>
-      <div class="grid grid-cols-2 gap-5 mt-3">
+      <div class="grid gap-5 mt-3">
         <div
           v-for="(project, index) in data"
           :key="project.name"
-          :class="
-            index !== 1 && index !== 2
-              ? 'col-span-2'
-              : 'md:col-span-1 col-span-2 h-full'
-          "
+          class="h-full"
         >
           <ProjectItem :details="project" :index="index" />
         </div>

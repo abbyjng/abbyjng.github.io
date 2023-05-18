@@ -21,25 +21,6 @@ function computePadding() {
   const frontWindow =
     document.getElementsByClassName("project-front")[props.index];
 
-  let otherFrontWindowHeight = 0;
-  let otherBackWindowHeight = 0;
-
-  if (props.index === 1 || props.index === 2) {
-    const otherFrontWindow =
-      document.getElementsByClassName("project-front")[
-        props.index === 1 ? 2 : 1
-      ];
-    otherFrontWindowHeight = otherFrontWindow.offsetHeight;
-
-    const otherBackWindow =
-      document.getElementsByClassName("project-back")[
-        props.index === 1 ? 2 : 1
-      ];
-    otherBackWindow.style.position = "relative";
-    otherBackWindowHeight = otherBackWindow.offsetHeight;
-    otherBackWindow.style.position = "absolute";
-  }
-
   backWindow.style.position = "relative";
 
   const frontWindowPaddingStr = window.getComputedStyle(
@@ -60,50 +41,18 @@ function computePadding() {
         backWindowHeight - (frontWindowHeight - frontWindowPadding),
         10
       ) + "px",
-    "--closed-row-height":
-      Math.max(frontWindowHeight, otherFrontWindowHeight) + "px",
-    "--open-height": Math.max(backWindowHeight, otherFrontWindowHeight) + "px",
-    "--open-row-height":
-      Math.max(frontWindowHeight, otherBackWindowHeight) + "px",
+    "--closed-height": frontWindowHeight + "px",
+    "--open-height": Math.max(backWindowHeight) + "px",
   };
 
   backWindow.style.position = "absolute";
 }
 
-function removeRowOpenClass() {
-  const firstFrontWindow = document.getElementsByClassName("project-front")[1];
-  firstFrontWindow.classList.remove("row-open");
-  const secondFrontWindow = document.getElementsByClassName("project-front")[2];
-  secondFrontWindow.classList.remove("row-open");
-}
-
 function toggleClick() {
-  if (props.index === 1 || props.index === 2) {
-    if (!opened.value) {
-      const otherFrontWindow =
-        document.getElementsByClassName("project-front")[
-          props.index === 1 ? 2 : 1
-        ];
-      otherFrontWindow.classList.add("row-open");
-    } else {
-      removeRowOpenClass();
-    }
-  } else if (!opened.value) {
-    removeRowOpenClass();
-  }
   opened.value = !opened.value;
 }
 
 function close() {
-  if (opened.value) {
-    if (props.index === 1 || props.index === 2) {
-      const otherFrontWindow =
-        document.getElementsByClassName("project-front")[
-          props.index === 1 ? 2 : 1
-        ];
-      otherFrontWindow.classList.remove("row-open");
-    }
-  }
   opened.value = false;
 }
 
@@ -127,30 +76,14 @@ onMounted(() => {
       if (props.details.coverPhoto) {
         // wait for cover photo to load in
         const coverPhoto = document.querySelector("#coverPhoto" + props.index);
-        let otherCoverPhoto;
-        if (props.index === 1 || props.index === 2) {
-          otherCoverPhoto = document.querySelector(
-            "#coverPhoto" + (props.index === 1 ? "2" : "1")
-          );
-        }
 
         if (coverPhoto.offsetHeight === 0) {
           // if this cover photo is not loaded, wait until it is
           coverPhoto.addEventListener("load", () => {
-            if (otherCoverPhoto) {
-              // if there is another photo in the row to wait for, check it
-              checkOtherPhotoLoaded(otherCoverPhoto);
-            } else {
-              setTimeout(computePadding, 100);
-            }
+            setTimeout(computePadding, 100);
           });
         } else {
-          // if this photo is loaded, check for another photo in the row to wait for
-          if (otherCoverPhoto) {
-            checkOtherPhotoLoaded(otherCoverPhoto);
-          } else {
-            setTimeout(computePadding, 100);
-          }
+          setTimeout(computePadding, 100);
         }
       } else {
         // otherwise okay to compute padding
@@ -158,16 +91,6 @@ onMounted(() => {
       }
     });
 });
-
-function checkOtherPhotoLoaded(otherCoverPhoto) {
-  if (otherCoverPhoto.offsetHeight === 0) {
-    otherCoverPhoto.addEventListener("load", () => {
-      setTimeout(computePadding, 100);
-    });
-  } else {
-    setTimeout(computePadding, 100);
-  }
-}
 
 function openCarousel(event) {
   currImage.value = parseInt(event.target.dataset.index);
@@ -295,19 +218,9 @@ onUnmounted(() => {
           {{ details.timeframe }}
         </p>
         <div
-          :class="[
-            'gap-10 items-center mx-4 justify-center',
-            index === 1 || index === 2
-              ? 'lg:flex lg:justify-between'
-              : 'md:flex md:justify-between',
-          ]"
+          class="gap-10 items-center mx-4 justify-center md:flex md:justify-between"
         >
-          <div
-            :class="[
-              'relative w-full shrink-0',
-              index === 1 || index === 2 ? 'lg:w-1/2' : 'md:w-1/2',
-            ]"
-          >
+          <div class="relative w-full shrink-0 md:w-1/2">
             <div>
               <img
                 :src="`https://raw.githubusercontent.com/abbyjng/abbyjng.github.io/gh-pages/projects/images/${props.details.photoPrefix}-${props.details.coverPhoto}.png`"
@@ -319,12 +232,7 @@ onUnmounted(() => {
               <img
                 :src="`https://raw.githubusercontent.com/abbyjng/abbyjng.github.io/gh-pages/projects/images/${props.details.photoPrefix}-icon.png`"
                 v-if="props.details.coverPhoto"
-                :class="[
-                  'absolute -right-3 -bottom-3 rounded-lg',
-                  index === 1 || index === 2
-                    ? 'lg:w-[50px] w-[75px]'
-                    : 'w-[75px]',
-                ]"
+                class="absolute -right-3 -bottom-3 rounded-lg w-[75px]"
               />
             </div>
           </div>
@@ -362,12 +270,8 @@ onUnmounted(() => {
   height: var(--open-height);
 }
 
-.closed .project-front.row-open {
-  height: var(--open-row-height);
-}
-
-.closed .project-front:not(.row-open) {
-  height: var(--closed-row-height);
+.closed .project-front {
+  height: var(--closed-height);
 }
 
 .closed .project-front,
